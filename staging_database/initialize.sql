@@ -4,8 +4,6 @@ CREATE DATABASE jobDWStage;					 --  Staging Database (jobDWStage)
 
 USE jobDWStage;
 
-USE jobDWStage;
-
 -- Company Stage
 CREATE TABLE Company_Stage (
     CompanyId INT,
