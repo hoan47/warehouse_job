@@ -1,6 +1,6 @@
 USE master;
 DROP DATABASE job;
-CREATE DATABASE job;					 -- Database Source (work)
+CREATE DATABASE job;					 -- Database Source (job)
 GO
 
 USE job;
