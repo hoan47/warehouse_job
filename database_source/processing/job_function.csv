@@ -1,0 +1,160 @@
+﻿JobFunctionId,JobFunctionName,JobFunctionNameVI
+10,Cost Accounting,Kế Toán Chi Phí
+79,Import/Export & Customs,Xuất Nhập Khẩu & Thủ Tục Hải Quan
+59,Accounts & Relationship Management,Quản Lý Quan Hệ Khách Hàng
+61,Client Services,Dịch Vụ Hỗ Trợ Khách Hàng
+30,IT Management,Quản Lý Công Nghệ Thông Tin
+58,Power/Water/Waste Engineering,Điện/Nước/Chất Thải
+20,Project Development/Contracts,Phát Triển Dự Án/Đấu Thầu
+76,Recruitment,Tuyển Dụng
+63,Credit,Tín Dụng
+35,Security,Bảo Mật Công Nghệ Thông Tin
+129,Sales/Business Development,Bán Hàng/Phát Triển Kinh Doanh
+82,Warehouse & Distribution,Quản Lý Kho & Phân Phối
+80,Procurement & Inventory,Thu Mua & Quản Trị Hàng Tồn Kho
+54,Environmental,Kỹ Thuật Môi Trường
+154,Quality Assurance/Quality Control/Quality Management,Đảm Bảo Chất Lượng/Kiểm Soát Chất Lượng/Quản Lý Chất Lượng
+56,Mechanical & HVAC,Cơ Khí & Điện Lạnh
+7,Accounts Receivable,Kế Toán Công Nợ
+8,Audit,Kiểm Toán
+53,Electrical/Electronic,Kỹ Thuật Điện/Điện Tử
+107,Market Research & Analysis,Nghiên Cứu & Phân Tích Thị Trường
+153,Production Operation & Planning,Hoạch Định & Quản Lý Sản Xuất
+13,General Accounting,Kế Toán Tổng Hợp
+36,Software Developer,Phần Mềm Máy Tính
+110,Public Relations & Corporate Affairs,Quan Hệ Công Chúng
+12,Financial Managers & Controllers,Kiểm Soát Viên Tài Chính
+19,Civil Engineering,Xây Dựng
+133,CNC Technician,Kỹ Thuật CNC
+34,QA/QC/Software Testing,QA/QC/Software Testing
+40,Customer Service - Call Center,Dịch Vụ Khách Hàng - Call Center
+39,Customer Service,Dịch Vụ Khách Hàng
+27,Data Engineer/Data Analyst/AI,Data Engineer/Data Analyst/AI
+130,Sales Engineer/Technical Sales,Bán Hàng Kỹ Thuật
+141,Valuation,Định Giá
+99,Legal Practice Management,Quản Lý Thi Hành Pháp Luật
+73,General HR,Nhân Sự Tổng Hợp
+72,Compensation & Benefit,Lương Thưởng & Phúc Lợi
+93,Banking/Finance/Commercial Law,Luật Tài Chính Ngân Hàng Thương mại
+42,Fashion Design/Jewelry Design,Thiết Kế Thời Trang/Trang Sức
+149,Clothing Technology,Phát Triển Sản Phẩm May Mặc
+62,Compliance & Risk,Tuân Thủ & Kiểm Soát Rủi Ro
+155,Research & Development,Nghiên Cứu & Phát Triển
+60,Financial Analysis & Research,Phân Tích & Báo Cáo Tài Chính
+15,Taxation,Kế Toán Thuế
+131,Telesales,Bán Hàng Qua Điện Thoại
+18,Architecture Design/Architectural Drafting,Thiết Kế Kiến Trúc/Họa Viên Kiến Trúc
+159,Others,Khác
+151,Machine Operator,Vận Hành Máy Móc
+126,Sales Administration,Trợ Lý Kinh Doanh
+108,Marketing,Tiếp Thị
+109,Product Marketing,Quản Lý & Phát Triển Sản Phẩm
+21,"Health, Safety & Environment",An Toàn Lao Động
+50,Automotive Engineering,Kỹ Thuật Ô Tô
+5,Teaching/Training,Giảng Dạy/Đào Tạo
+118,Pharmacist,Dược Sĩ
+3,Research and Fellowship,Nghiên Cứu Học Thuật
+81,Supply Chain Management,Quản Lý Chuỗi Cung Ứng
+111,Trade Marketing,Tiếp Thị Thương Mại
+98,Law Clerks & Paralegals,Thư Ký Luật & Trợ Lý Luật
+150,Assembly & Process Work,Quy Trình & Lắp Ráp
+105,Digital Marketing,Tiếp Thị Trực Tuyến
+134,Maintenance Technician,Bảo trì/Bảo Dưỡng
+132,Auto Mechanic,Cơ Khí Tự Động Hoá
+22,Interior Design,Thiết Kế Nội Thất
+44,Industrial Design/Technical Design,Thiết Kế Công Nghiệp/Kỹ Thuật
+6,Accounts Payable,Kế Toán Thanh Toán
+122,Interpreter/Translator,Biên Phiên Dịch
+78,Freight/Cargo Forwarding,Vận Tải/Giao Nhận Hàng Hóa
+32,System/Cloud/DevOps Engineer,System/Cloud/DevOps Engineer
+103,Brand Management,Quản Lý Thương Hiệu
+16,Revenue Accounting,Kế Toán Doanh Thu
+83,Actuary,Định Phí Bảo Hiểm
+28,Digital Transformation,Chuyển Đổi Số
+139,Residential Leasing & Property Management,Cho Thuê & Quản Lý Căn Hộ
+33,IT Product Management/Project Management,Quản Lý Dự Án Công Nghệ
+148,Merchandising,Quản Lý Đơn Hàng
+49,Road Transport,Vận Tải Đường Bộ
+11,Financial Accounting,Kế Toán Tài Chính
+4,Student Services,Dịch Vụ Sinh Viên/Hỗ Trợ Học Viên
+92,Travel Agents,Đại Lý Du Lịch
+31,IT Support/Help Desk,IT Support/Help Desk
+14,Management Accounting,Kế Toán Quản Trị
+64,Debt Collection,Thu Hồi Nợ
+138,"Commercial Sales, Leasing & Property Management","Kinh Doanh Thương Mại, Cho Thuê & Quản Lý Tài Sản"
+75,Training and Development,Đào Tạo Và Phát Triển
+120,Administration,Hành Chính
+156,Pharmacy Distribution,Phân Phối Dược Phẩm
+2,Educational Management,Quản Lý Giáo Dục
+66,Investment,Đầu Tư Tài Chính
+86,Underwriting,Bao Tiêu/Bảo Lãnh
+152,Production Analysis,Phân Tích Sản Xuất
+127,Secretary,Thư Ký
+123,Office Management,Quản Lý Văn Phòng
+84,Claims,Bồi Thường Bảo Hiểm
+124,Purchasing,Thu Mua
+25,Business/System Analysis,Phân Tích Kinh Doanh/Phân Tích Hệ Thống
+1,Educational Consulting,Tư Vấn Giáo Dục
+43,Graphic Design,Thiết Kế Đồ Họa
+140,Property Development,Phát Triển Bất Động Sản
+17,Agriculture/Livestock/Fishery,Nông/Lâm/Ngư nghiệp
+158,General Management,Quản Lý Cấp Cao
+95,Generalists,Tư Vấn Pháp Lý
+37,Telecommunications,Viễn Thông
+145,Store Management,Quản Lý Cửa Hàng
+104,Content Marketing/Copywriter,Tiếp Thị Nội Dung
+38,UX/UI Design,UX/UI Design
+137,Facilities Management,Quản Lý Cơ Sở Vật Chất
+74,Performance & Career Management,Quản Trị Hiệu Suất & Sự Nghiệp
+23,Project Management,Quản Lý Dự Án
+26,Database Administration,Quản Trị Cơ Sở Dữ Liệu
+45,Video Editing,Chỉnh Sửa Video
+47,Public Transport & Taxi Services,Dịch Vụ Vận Tải Công Cộng
+112,Art Direction/Photography,Đạo Diễn Nghệ Thuật/Nhiếp Ảnh
+144,Retail Assistant,Trợ Lý Bán Lẻ
+117,Nursing,Y Tá
+67,Stockbroking & Trading,Môi Giới & Giao Dịch Chứng Khoán
+143,Buying,Thu Mua
+70,F&B Management,Quản Lý F&B
+69,Chefs/Cooks,Đầu Bếp
+65,Funds Management,Quản Lý Quỹ
+52,Chemical Engineering,Kỹ Thuật Hóa Học
+142,Area/Multisite Management,Quản Lý Khu Vực
+116,Medical Technologist,Kỹ Thuật Viên Y Tế
+51,Biotechnologies,Công Nghệ Sinh Học
+24,Urban Design & Planning,Thiết Kế & Quy Hoạch Đô Thị
+125,Receptionist,Lễ Tân/Tiếp Tân
+121,General Coordinator,Điều Phối
+106,Event Management,Quản Lý Sự Kiện
+77,Fleet Management,Quản Lý Đội Xe
+55,Food Technology,Công Nghệ Thực Phẩm
+96,Employment/Retirement Law,Luật Lao động/Hưu Trí
+136,Real Estate Analysis,Phân Tích Dự Án Bất Động Sản
+87,Front Office & Guest Services,Bộ Phận Tiền Sảnh & Dịch Vụ Khách Hàng
+102,Agency Account Management,Quản Lý Tài Khoản Khách Hàng
+157,CEO,CEO
+9,Corporate Planning/Corporate Advisory,Kế hoạch/Tư Vấn Doanh Nghiệp
+146,NGO/Non-Profit,NGO/Phi Lợi Nhuận
+85,Risk Consulting,Tư Vấn Rủi Ro
+71,Employee Engagement,Gắn Kết Nhân Viên
+90,Tour Operator,Công Ty Kinh Doanh Lữ Hành
+115,Doctor/General Practitioners/Residents,Bác Sĩ/Điều Trị Đa Khoa/Điều Trị Nội Trú
+147,"Policy, Planning & Regulation","Chính sách, Quy hoạch & Quy định"
+29,Hardware Developer,Phần Cứng Máy Tính
+48,Rail & Maritime Transport,Vận Tải Đường Sắt & Hàng Hải
+100,Legal Secretaries,Thư Ký Pháp Lý
+135,Printing Technician,In Ấn
+128,Safe Guard,Bảo Vệ
+41,Customer Service - Customer Facing,Dịch Vụ Khách Hàng - Hướng Khách Hàng
+68,Bar/Beverage/Waiting,Quầy Bar/Đồ Uống/Phục vụ
+57,Mining/Oil/Gas,Khai Thác Mỏ
+94,Construction Law,Luật Xây Dựng
+113,Printing & Publishing Services,In Ấn & Xuất Bản
+46,Aviation Services,Dịch Vụ Hàng Không
+101,Tax Law,Luật Thuế
+91,Tourist Guides,Hướng Dẫn Viên Du Lịch
+0,,
+88,Hotel Reservation,Đặt Phòng Khách Sạn
+119,"Psychology, Counselling & Social Work",Tư Vấn Tâm Lý & Công Tác Xã Hội
+114,Programming & Production,Sản Xuất Chương Trình
+97,Intellectual/Property Law,Luật Sở Hữu Trí Tuệ

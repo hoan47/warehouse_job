@@ -1,0 +1,50 @@
+﻿IndustryId,IndustryName,IndustryNameVI
+46,Textiles/Garments/Footwear,Dệt may/May mặc/Giày dép
+9,Banking,Ngân hàng
+26,IT System & Devices,Hệ thống CNTT & Thiết bị
+5,Architecture/Interior Design,Kiến trúc/Thiết kế nội thất
+13,Construction Engineering/Infrastructure,Kỹ thuật xây dựng/Cơ sở hạ tầng
+49,Others,Khác
+24,Insurance,Bảo hiểm
+40,Real Estate/Rental/Leasing,Bất Động Sản/Cho thuê
+34,Medical Services/Healthcare,Dịch vụ Y tế/Chăm sóc sức khỏe
+30,Manufacturing,Sản xuất
+25,IT Software/SaaS,Phần Mềm CNTT/Dịch vụ Phần mềm
+42,Retail/Wholesale Trading,Bán lẻ/Bán sỉ
+31,Mechanic/Machinery/Industrial Equipment,Cơ khí/Máy móc/Thiết bị công nghiệp
+2,Accounting/Auditing,Kế toán/Kiểm toán
+16,Electrical/Electronics,Điện/Điện tử
+32,Media/Newspaper/Advertising,Truyền thông/Báo chí/Quảng cáo
+44,Supply Chains,Chuỗi cung ứng
+47,Transportation,Vận tải
+15,Education/Training,Giáo dục/Đào Tạo
+20,FMCG,Hàng tiêu dùng
+8,Automotive,Ô tô
+12,Chemical/Biochemical,Hoá chất/Hoá sinh
+19,Finance,Tài Chính
+18,Fashion/Jewelry,Thời trang/Trang sức
+7,Automatic,Tự động hoá
+37,Pharmaceutical,Dược phẩm
+39,Production and Distribution of Electricity/Gas/Water,Sản xuất và Phân phối Điện/Khí đốt/Nước
+29,Logistics/Forwarding,Hậu cần/Giao nhận
+23,Import/Export,Nhập khẩu/Xuất khẩu
+33,Medical Devices,Thiết bị y tế
+3,Agriculture/Forestry/Aquaculture,Nông nghiệp/Lâm nghiệp/Nuôi trồng thủy sản
+43,Securities,Chứng khoán
+14,E-commerce,Thương mại điện tử
+38,Plastic & Rubbers,Nhựa & Cao su
+1,Accommodation/Restaurant/Hotel/Tourism,Dịch vụ lưu trú/Nhà hàng/Khách sạn/Du lịch
+28,Law/Legal Services,Luật/Dịch vụ pháp lý
+36,Packaging/Printing/Labeling,Bao bì/In ấn/Dán nhãn
+11,Building Materials,Vật liệu xây dựng
+21,Furniture/Wood,Nội thất/Gỗ
+27,Labor Supply,Cung cấp nhân lực
+10,Beauty (Cosmetics) & Personal Care,Làm đẹp (Mỹ phẩm) & Chăm sóc cá nhân
+6,Art/Amusement/Entertainment,Nghệ thuật/Giải trí
+45,Telecommunication,Viễn thông
+35,Mining/Oil and Gas,Khai khoáng/Dầu khí
+22,Government & NGO,Chính phủ & NGO
+17,Environment/Waste Services,Dịch vụ môi trường/Chất thải
+41,Research,Nghiên cứu
+48,Warehouse/Freight Yard,Dịch vụ kho bãi
+4,Animal Health,Thú y

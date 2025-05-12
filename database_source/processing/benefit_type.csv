@@ -1,0 +1,16 @@
+﻿BenefitId,BenefitName,BenefitNameVI,BenefitIconName
+1,Bonus,Thưởng,fa-dollar
+3,Paid Leave,Nghỉ phép có lương,fa-file-image-o
+4,Training,Đào tạo,fa-graduation-cap
+2,Healthcare Plan,Chăm sóc sức khoẻ,fa-user-md
+5,Awards,Giải thưởng,fa-trophy
+15,Others,Khác,fa-check-square-o
+9,Travel Opportunities,Cơ hội du lịch,fa-plane
+11,Transportation,Xe đưa đón,fa-cab
+10,Team Activities,Hoạt động nhóm,fa-glass
+7,Laptop,Máy tính xách tay,fa-laptop
+12,Canteen,Căn-tin,fa-coffee
+13,Vouchers,Phiếu giảm giá,fa-gift
+8,Mobile,Điện thoại,fa-mobile
+6,Library,Thư viện,fa-book
+14,Kindergarten,Nhà trẻ,fa-child

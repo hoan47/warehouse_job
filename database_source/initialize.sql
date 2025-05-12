@@ -1,3 +1,5 @@
+USE master;
+DROP DATABASE job;
 CREATE DATABASE job;					 -- Database Source (work)
 GO
 
@@ -22,20 +24,9 @@ CREATE TABLE City (
     CityName NVARCHAR(100)              -- Tên thành phố bằng tiếng Anh (ví dụ: "Hanoi")
 );
 -- Ý nghĩa:
--- CityId: Khóa chính, nhận diện thành phố duy nhất, liên kết với District và WorkingLocation (ví dụ: CityId: 24 cho Hà Nội).
+-- CityId: Khóa chính, nhận diện thành phố duy nhất, liên kết với WorkingLocation (ví dụ: CityId: 24 cho Hà Nội).
 -- CityNameVI: Tên thành phố bằng tiếng Việt, dùng cho giao diện tiếng Việt.
 -- CityName: Tên thành phố bằng tiếng Anh, dùng cho giao diện quốc tế.
-
-
-CREATE TABLE District (
-    DistrictId INT PRIMARY KEY,         -- Mã định danh duy nhất cho quận/huyện
-    CityId INT FOREIGN KEY REFERENCES City(CityId), -- Mã thành phố mà quận/huyện thuộc về
-    DistrictName NVARCHAR(100)          -- Tên quận/huyện (ví dụ: "Nam Từ Liêm")
-);
--- Ý nghĩa:
--- DistrictId: Khóa chính, nhận diện quận/huyện duy nhất, liên kết với WorkingLocation (ví dụ: DistrictId: 32 cho Nam Từ Liêm).
--- CityId: Khóa ngoại, chỉ định thành phố chứa quận/huyện.
--- DistrictName: Tên quận/huyện, dùng để hiển thị hoặc lọc công việc theo khu vực.
 
 
 CREATE TABLE Industry (
@@ -143,7 +134,6 @@ CREATE TABLE WorkingLocation (
     JobId INT FOREIGN KEY REFERENCES Job(JobId), -- Mã công việc liên kết
     Address NVARCHAR(500),              -- Địa chỉ cụ thể của địa điểm
 	CityId INT FOREIGN KEY REFERENCES City(CityId),
-	DistrictId INT FOREIGN KEY REFERENCES District(DistrictId),
     Latitude FLOAT,                     -- Vĩ độ của địa điểm
     Longitude FLOAT                     -- Kinh độ của địa điểm
 );
@@ -152,7 +142,6 @@ CREATE TABLE WorkingLocation (
 -- JobId: Liên kết với công việc, hỗ trợ nhiều địa điểm cho một Job.
 -- Address: Địa chỉ chi tiết (ví dụ: "Tầng 20, CEO Tower, Hà Nội").
 -- CityId: Mã thành phố (ví dụ: CityId: 24).
--- DistrictId: Mã quận/huyện (ví dụ: DistrictId: 32).
 -- Latitude, Longitude: Tọa độ địa lý, hỗ trợ bản đồ.
 
 
@@ -201,9 +190,10 @@ CREATE TABLE JobSkill (
 CREATE TABLE JobBenefit (
     JobId INT FOREIGN KEY REFERENCES Job(JobId), -- Mã công việc
     BenefitId INT FOREIGN KEY REFERENCES BenefitType(BenefitId), -- Mã loại lợi ích
-    BenefitValue NVARCHAR(255),         -- Giá trị cụ thể của lợi ích
+    BenefitValue NVARCHAR(500),         -- Giá trị cụ thể của lợi ích
     PRIMARY KEY (JobId, BenefitId)
 );
 -- Ý nghĩa:
 -- JobId, BenefitId: Khóa chính composite, liên kết Job với nhiều lợi ích (N-N).
 -- BenefitValue: Giá trị cụ thể (ví dụ: "Lương tháng 13").
+
