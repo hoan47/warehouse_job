@@ -65,6 +65,8 @@ def convert_dataframe_types(df, table_name):
         df['JobDescription'] = df['JobDescription'].astype(str)
         df['JobRequirement'] = df['JobRequirement'].astype(str)
         df['LanguageId'] = df['LanguageId'].astype('Int64')
+        df['JobFunctionId'] = df['JobFunctionId'].astype('Int64')
+        df['GroupJobFunctionId'] = df['GroupJobFunctionId'].astype('Int64')
     
     elif table_name == 'WorkingLocation':
         df['WorkingLocationId'] = df['WorkingLocationId'].astype('Int64')
@@ -77,14 +79,6 @@ def convert_dataframe_types(df, table_name):
     elif table_name == 'JobIndustry':
         df['JobId'] = df['JobId'].astype('Int64')
         df['IndustryId'] = df['IndustryId'].astype('Int64')
-    
-    elif table_name == 'JobJobFunction':
-        df['JobId'] = df['JobId'].astype('Int64')
-        df['JobFunctionId'] = df['JobFunctionId'].astype('Int64')
-    
-    elif table_name == 'JobGroupJobFunction':
-        df['JobId'] = df['JobId'].astype('Int64')
-        df['GroupJobFunctionId'] = df['GroupJobFunctionId'].astype('Int64')
     
     elif table_name == 'JobSkill':
         df['JobId'] = df['JobId'].astype('Int64')
@@ -129,11 +123,9 @@ try:
         ('skill.csv', 'Skill', ['SkillId', 'SkillName']),
         ('benefit_type.csv', 'BenefitType', ['BenefitId', 'BenefitName', 'BenefitNameVI', 'BenefitIconName']),
         ('language.csv', 'Language', ['LanguageId', 'LanguageName', 'LanguageNameVI']),
-        ('job.csv', 'Job', ['JobId', 'JobTitle', 'JobUrl', 'CompanyId', 'SalaryMin', 'SalaryMax', 'SalaryCurrency', 'JobLevel', 'TypeWorkingId', 'ApprovedOn', 'OnlineOn', 'ExpiredOn', 'IsUrgentJob', 'IsTopPriority', 'IsMobileHotJob', 'JobDescription', 'JobRequirement', 'LanguageId']),
+        ('job.csv', 'Job', ['JobId', 'JobTitle', 'JobUrl', 'CompanyId', 'SalaryMin', 'SalaryMax', 'SalaryCurrency', 'JobLevel', 'TypeWorkingId', 'ApprovedOn', 'OnlineOn', 'ExpiredOn', 'IsUrgentJob', 'IsTopPriority', 'IsMobileHotJob', 'JobDescription', 'JobRequirement', 'LanguageId', 'JobFunctionId', 'GroupJobFunctionId']),
         ('working_location.csv', 'WorkingLocation', ['WorkingLocationId', 'JobId', 'Address', 'CityId', 'Latitude', 'Longitude']),
         ('job_industry.csv', 'JobIndustry', ['JobId', 'IndustryId']),
-        ('job_job_function.csv', 'JobJobFunction', ['JobId', 'JobFunctionId']),
-        ('job_group_job_function.csv', 'JobGroupJobFunction', ['JobId', 'GroupJobFunctionId']),
         ('job_skill.csv', 'JobSkill', ['JobId', 'SkillId']),
         ('job_benefit.csv', 'JobBenefit', ['JobId', 'BenefitId', 'BenefitValue']),
     ]

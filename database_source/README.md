@@ -11,8 +11,6 @@
 ✅ 11198 rows into Job
 ✅ 8744 rows into WorkingLocation
 ✅ 11198 rows into JobIndustry
-✅ 11198 rows into JobJobFunction
-✅ 11198 rows into JobGroupJobFunction
 ✅ 53573 rows into JobSkill
 ✅ 37663 rows into JobBenefit
 
@@ -24,11 +22,11 @@ Một công ty có thể đăng nhiều công việc (1:N).
 Industry ↔ Job (thông qua bảng trung gian JobIndustry)
 Một ngành nghề có thể áp dụng cho nhiều công việc và ngược lại (N:M).
 
-JobFunction ↔ Job (thông qua bảng trung gian JobJobFunction)
-Một chức năng công việc có thể liên quan tới nhiều công việc và ngược lại (N:M).
+JobFunction ↔ Job
+Một công việc sử dụng một chức năng công việc, và một chức năng công việc có thể liên kết với nhiều công việc (1:N).
 
-GroupJobFunction ↔ Job (thông qua bảng trung gian JobGroupJobFunction)
-Một nhóm chức năng công việc có thể liên kết với nhiều công việc và ngược lại (N:M).
+GroupJobFunction ↔ Job
+Một công việc sử dụng một nhóm chức năng công việc, và một nhóm chức năng công việc có thể liên kết với nhiều công việc (1:N).
 
 Skill ↔ Job (thông qua bảng trung gian JobSkill)
 Một kỹ năng có thể yêu cầu cho nhiều công việc và ngược lại (N:M).

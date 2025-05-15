@@ -1,6 +1,13 @@
 USE master;
+GO
+ALTER DATABASE job SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+GO
 DROP DATABASE job;
-CREATE DATABASE job;					 -- Database Source (job)
+GO
+CREATE DATABASE job					 -- Database Source (job)
+GO
+ALTER DATABASE job
+SET RECOVERY SIMPLE
 GO
 
 USE job;
@@ -113,7 +120,9 @@ CREATE TABLE Job (
     IsMobileHotJob BIT,                 -- Cờ công việc nổi bật trên di động
     JobDescription NVARCHAR(MAX),       -- Mô tả công việc
     JobRequirement NVARCHAR(MAX),       -- Yêu cầu công việc
-    LanguageId INT FOREIGN KEY REFERENCES Language(LanguageId) -- Mã ngôn ngữ yêu cầu
+    LanguageId INT FOREIGN KEY REFERENCES Language(LanguageId), -- Mã ngôn ngữ yêu cầu
+    JobFunctionId INT FOREIGN KEY REFERENCES JobFunction(JobFunctionId), -- Mã chức năng công việc
+    GroupJobFunctionId INT FOREIGN KEY REFERENCES GroupJobFunction(GroupJobFunctionId) -- Mã nhóm chức năng
 );
 -- Ý nghĩa:
 -- JobId: Khóa chính, nhận diện công việc duy nhất (ví dụ: JobId: 1899671).
@@ -127,6 +136,8 @@ CREATE TABLE Job (
 -- IsUrgentJob, IsTopPriority, IsMobileHotJob: Ưu tiên hiển thị.
 -- JobDescription, JobRequirement: Thông tin chi tiết cho ứng viên.
 -- LanguageId: Ngôn ngữ yêu cầu (ví dụ: "Any").
+-- JobFunctionId: Chức năng công việc (ví dụ: "Customer Service").
+-- GroupJobFunctionId: Nhóm chức năng công việc (ví dụ: "Banking & Financial Services").
 
 
 CREATE TABLE WorkingLocation (
@@ -154,28 +165,6 @@ CREATE TABLE JobIndustry (
 );
 -- Ý nghĩa:
 -- JobId, IndustryId: Khóa chính composite, liên kết Job với nhiều ngành nghề (N-N).
-
-
-CREATE TABLE JobJobFunction (
-    JobId INT,                          -- Mã công việc
-    JobFunctionId INT,                  -- Mã chức năng công việc
-    PRIMARY KEY (JobId, JobFunctionId),
-    FOREIGN KEY (JobId) REFERENCES Job(JobId),
-    FOREIGN KEY (JobFunctionId) REFERENCES JobFunction(JobFunctionId)
-);
--- Ý nghĩa:
--- JobId, JobFunctionId: Khóa chính composite, liên kết Job với nhiều chức năng chi tiết (N-N, ví dụ: "Customer Service", "Relationship Management").
-
-
-CREATE TABLE JobGroupJobFunction (
-    JobId INT,                          -- Mã công việc
-    GroupJobFunctionId INT,             -- Mã nhóm chức năng
-    PRIMARY KEY (JobId, GroupJobFunctionId),
-    FOREIGN KEY (JobId) REFERENCES Job(JobId),
-    FOREIGN KEY (GroupJobFunctionId) REFERENCES GroupJobFunction(GroupJobFunctionId)
-);
--- Ý nghĩa:
--- JobId, GroupJobFunctionId: Khóa chính composite, liên kết Job với nhiều nhóm chức năng (N-N, ví dụ: "Banking & Financial Services").
 
 
 CREATE TABLE JobSkill (

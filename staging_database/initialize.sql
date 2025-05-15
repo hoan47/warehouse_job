@@ -1,76 +1,84 @@
 USE master;
+GO
+ALTER DATABASE jobDWStage SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+GO
 DROP DATABASE jobDWStage;
-CREATE DATABASE jobDWStage;					 --  Staging Database (jobDWStage)
+GO
+CREATE DATABASE jobDWStage; 					--  Staging Database (jobDWStage)
+GO
+ALTER DATABASE jobDWStage
+SET RECOVERY SIMPLE
+GO
 
 USE jobDWStage;
 
 -- Company Stage
-CREATE TABLE Company_Stage (
+CREATE TABLE CompanyStage (
     CompanyId INT,
     CompanyName NVARCHAR(255),
     CompanyLogo NVARCHAR(500),
     Address NVARCHAR(500),
-    ETL_InsertDate DATETIME DEFAULT GETDATE()
+    ETLInsertDate DATETIME DEFAULT GETDATE()
 );
 
 -- City Stage
-CREATE TABLE City_Stage (
+CREATE TABLE CityStage (
     CityId INT,
     CityName NVARCHAR(100),
 	CityNameVI NVARCHAR(100),
-    ETL_InsertDate DATETIME DEFAULT GETDATE()
+    ETLInsertDate DATETIME DEFAULT GETDATE()
 );
 
 -- Industry Stage
-CREATE TABLE Industry_Stage (
+CREATE TABLE IndustryStage (
     IndustryId INT,
     IndustryName NVARCHAR(255),
     IndustryNameVI NVARCHAR(255),
-    ETL_InsertDate DATETIME DEFAULT GETDATE()
+    ETLInsertDate DATETIME DEFAULT GETDATE()
 );
 
 -- JobFunction Stage
-CREATE TABLE JobFunction_Stage (
+CREATE TABLE JobFunctionStage (
     JobFunctionId INT,
     JobFunctionName NVARCHAR(255),
     JobFunctionNameVI NVARCHAR(255),
-    ETL_InsertDate DATETIME DEFAULT GETDATE()
+    ETLInsertDate DATETIME DEFAULT GETDATE()
 );
 
 -- GroupJobFunction Stage
-CREATE TABLE GroupJobFunction_Stage (
+CREATE TABLE GroupJobFunctionStage (
     GroupJobFunctionId INT,
     GroupJobFunctionName NVARCHAR(255),
     GroupJobFunctionNameVI NVARCHAR(255),
-    ETL_InsertDate DATETIME DEFAULT GETDATE()
+    ETLInsertDate DATETIME DEFAULT GETDATE()
 );
 
 -- Skill Stage
-CREATE TABLE Skill_Stage (
+CREATE TABLE SkillStage (
     SkillId INT,
     SkillName NVARCHAR(255),
-    ETL_InsertDate DATETIME DEFAULT GETDATE()
+    ETLInsertDate DATETIME DEFAULT GETDATE()
 );
 
 -- BenefitType Stage
-CREATE TABLE BenefitType_Stage (
+CREATE TABLE BenefitTypeStage (
     BenefitId INT,
     BenefitName NVARCHAR(255),
     BenefitNameVI NVARCHAR(255),
     BenefitIconName NVARCHAR(100),
-    ETL_InsertDate DATETIME DEFAULT GETDATE()
+    ETLInsertDate DATETIME DEFAULT GETDATE()
 );
 
 -- Language Stage
-CREATE TABLE Language_Stage (
+CREATE TABLE LanguageStage (
     LanguageId INT,
     LanguageName NVARCHAR(100),
     LanguageNameVI NVARCHAR(100),
-    ETL_InsertDate DATETIME DEFAULT GETDATE()
+    ETLInsertDate DATETIME DEFAULT GETDATE()
 );
 
 -- Job Stage
-CREATE TABLE Job_Stage (
+CREATE TABLE JobStage (
     JobId INT,
     JobTitle NVARCHAR(255),
     JobUrl NVARCHAR(500),
@@ -89,132 +97,40 @@ CREATE TABLE Job_Stage (
     JobDescription NVARCHAR(MAX),
     JobRequirement NVARCHAR(MAX),
     LanguageId INT,
-    ETL_InsertDate DATETIME DEFAULT GETDATE()
+    ETLInsertDate DATETIME DEFAULT GETDATE(),
+    JobFunctionId INT,
+    GroupJobFunctionId INT
 );
 
 -- WorkingLocation Stage
-CREATE TABLE WorkingLocation_Stage (
+CREATE TABLE WorkingLocationStage (
     WorkingLocationId INT,
     JobId INT,
     Address NVARCHAR(500),
     CityId INT,
     Latitude FLOAT,
     Longitude FLOAT,
-    ETL_InsertDate DATETIME DEFAULT GETDATE()
+    ETLInsertDate DATETIME DEFAULT GETDATE()
 );
 
 -- JobIndustry Stage
-CREATE TABLE JobIndustry_Stage (
+CREATE TABLE JobIndustryStage (
     JobId INT,
     IndustryId INT,
-    ETL_InsertDate DATETIME DEFAULT GETDATE()
-);
-
--- JobJobFunction Stage
-CREATE TABLE JobJobFunction_Stage (
-    JobId INT,
-    JobFunctionId INT,
-    ETL_InsertDate DATETIME DEFAULT GETDATE()
-);
-
--- JobGroupJobFunction Stage
-CREATE TABLE JobGroupJobFunction_Stage (
-    JobId INT,
-    GroupJobFunctionId INT,
-    ETL_InsertDate DATETIME DEFAULT GETDATE()
+    ETLInsertDate DATETIME DEFAULT GETDATE()
 );
 
 -- JobSkill Stage
-CREATE TABLE JobSkill_Stage (
+CREATE TABLE JobSkillStage (
     JobId INT,
     SkillId INT,
-    ETL_InsertDate DATETIME DEFAULT GETDATE()
+    ETLInsertDate DATETIME DEFAULT GETDATE()
 );
 
 -- JobBenefit Stage
-CREATE TABLE JobBenefit_Stage (
+CREATE TABLE JobBenefitStage (
     JobId INT,
     BenefitId INT,
     BenefitValue NVARCHAR(500),
-    ETL_InsertDate DATETIME DEFAULT GETDATE()
+    ETLInsertDate DATETIME DEFAULT GETDATE()
 );
-
-
--- Company
-INSERT INTO Company_Stage (CompanyId, CompanyName, CompanyLogo, Address)
-SELECT CompanyId, CompanyName, CompanyLogo, Address
-FROM job.dbo.Company;
-
--- City
-INSERT INTO City_Stage (CityId, CityNameVI, CityName)
-SELECT CityId, CityNameVI, CityName
-FROM job.dbo.City;
-
--- Industry
-INSERT INTO Industry_Stage (IndustryId, IndustryName, IndustryNameVI)
-SELECT IndustryId, IndustryName, IndustryNameVI
-FROM job.dbo.Industry;
-
--- JobFunction
-INSERT INTO JobFunction_Stage (JobFunctionId, JobFunctionName, JobFunctionNameVI)
-SELECT JobFunctionId, JobFunctionName, JobFunctionNameVI
-FROM job.dbo.JobFunction;
-
--- GroupJobFunction
-INSERT INTO GroupJobFunction_Stage (GroupJobFunctionId, GroupJobFunctionName, GroupJobFunctionNameVI)
-SELECT GroupJobFunctionId, GroupJobFunctionName, GroupJobFunctionNameVI
-FROM job.dbo.GroupJobFunction;
-
--- Skill
-INSERT INTO Skill_Stage (SkillId, SkillName)
-SELECT SkillId, SkillName
-FROM job.dbo.Skill;
-
--- BenefitType
-INSERT INTO BenefitType_Stage (BenefitId, BenefitName, BenefitNameVI, BenefitIconName)
-SELECT BenefitId, BenefitName, BenefitNameVI, BenefitIconName
-FROM job.dbo.BenefitType;
-
--- Language
-INSERT INTO Language_Stage (LanguageId, LanguageName, LanguageNameVI)
-SELECT LanguageId, LanguageName, LanguageNameVI
-FROM job.dbo.Language;
-
--- Job
-INSERT INTO Job_Stage (JobId, JobTitle, JobUrl, CompanyId, SalaryMin, SalaryMax, SalaryCurrency, JobLevel,
-                       TypeWorkingId, ApprovedOn, OnlineOn, ExpiredOn, IsUrgentJob, IsTopPriority, IsMobileHotJob,
-                       JobDescription, JobRequirement, LanguageId)
-SELECT JobId, JobTitle, JobUrl, CompanyId, SalaryMin, SalaryMax, SalaryCurrency, JobLevel,
-       TypeWorkingId, ApprovedOn, OnlineOn, ExpiredOn, IsUrgentJob, IsTopPriority, IsMobileHotJob,
-       JobDescription, JobRequirement, LanguageId
-FROM job.dbo.Job;
-
--- WorkingLocation
-INSERT INTO WorkingLocation_Stage (WorkingLocationId, JobId, Address, CityId, Latitude, Longitude)
-SELECT WorkingLocationId, JobId, Address, CityId, Latitude, Longitude
-FROM job.dbo.WorkingLocation;
-
--- JobIndustry
-INSERT INTO JobIndustry_Stage (JobId, IndustryId)
-SELECT JobId, IndustryId
-FROM job.dbo.JobIndustry;
-
--- JobJobFunction
-INSERT INTO JobJobFunction_Stage (JobId, JobFunctionId)
-SELECT JobId, JobFunctionId
-FROM job.dbo.JobJobFunction;
-
--- JobGroupJobFunction
-INSERT INTO JobGroupJobFunction_Stage (JobId, GroupJobFunctionId)
-SELECT JobId, GroupJobFunctionId
-FROM job.dbo.JobGroupJobFunction;
-
--- JobSkill
-INSERT INTO JobSkill_Stage (JobId, SkillId)
-SELECT JobId, SkillId
-FROM job.dbo.JobSkill;
-
--- JobBenefit
-INSERT INTO JobBenefit_Stage (JobId, BenefitId, BenefitValue)
-SELECT JobId, BenefitId, BenefitValue
-FROM job.dbo.JobBenefit;

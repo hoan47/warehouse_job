@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="11"
-  DTS:VersionGUID="{5372F8B5-7A39-4007-8FAE-7618892B18AE}">
+  DTS:VersionBuild="17"
+  DTS:VersionGUID="{D9351AE7-F264-4A48-850F-CD45E694F9F6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -159,6 +159,18 @@
                       cachedName="BenefitCount"
                       externalMetadataColumnId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[BenefitCount]"
                       lineageId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[BenefitCount]" />
+                    <inputColumn
+                      refId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].Columns[DimGroupJobFunctionKey]"
+                      cachedDataType="i4"
+                      cachedName="DimGroupJobFunctionKey"
+                      externalMetadataColumnId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimGroupJobFunctionKey]"
+                      lineageId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimGroupJobFunctionKey]" />
+                    <inputColumn
+                      refId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].Columns[DimJobFunctionKey]"
+                      cachedDataType="i4"
+                      cachedName="DimJobFunctionKey"
+                      externalMetadataColumnId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimJobFunctionKey]"
+                      lineageId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimJobFunctionKey]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -176,7 +188,7 @@
                       name="JobCount" />
                     <externalMetadataColumn
                       refId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[FactBenefitPopularityKey]"
-                      dataType="i2"
+                      dataType="i4"
                       name="FactBenefitPopularityKey" />
                     <externalMetadataColumn
                       refId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimBenefitKey]"
@@ -186,6 +198,14 @@
                       refId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[BenefitCount]"
                       dataType="i4"
                       name="BenefitCount" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimJobFunctionKey]"
+                      dataType="i4"
+                      name="DimJobFunctionKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimGroupJobFunctionKey]"
+                      dataType="i4"
+                      name="DimGroupJobFunctionKey" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -242,7 +262,9 @@
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
     db.DimBenefitKey,
     dd.DimDateKey,
-    di.DimIndustryKey,
+	di.DimIndustryKey,
+    djf.DimJobFunctionKey,
+    dgjf.DimGroupJobFunctionKey,
     COUNT(jb.BenefitId) AS BenefitCount,
     COUNT(DISTINCT jb.JobId) AS JobCount
 FROM jobDWStage.dbo.JobBenefitStage jb
@@ -253,7 +275,13 @@ JOIN jobDWStage.dbo.IndustryStage i ON ji.IndustryId = i.IndustryId
 JOIN jobDW.dbo.DimBenefit db ON bt.BenefitId = db.BenefitId AND db.RowIsCurrent = '1'
 JOIN jobDW.dbo.DimDate dd ON CAST(j.OnlineOn AS DATE) = dd.FullDate
 JOIN jobDW.dbo.DimIndustry di ON i.IndustryId = di.IndustryId AND di.RowIsCurrent = '1'
-GROUP BY db.DimBenefitKey, dd.DimDateKey, di.DimIndustryKey;</property>
+JOIN jobDW.dbo.DimJobFunction djf ON j.JobFunctionId = djf.JobFunctionId  AND djf.RowIsCurrent = '1'
+JOIN jobDW.dbo.DimGroupJobFunction dgjf ON j.GroupJobFunctionId = dgjf.GroupJobFunctionId AND dgjf.RowIsCurrent = '1'
+GROUP BY db.DimBenefitKey, 
+	dd.DimDateKey,     
+	di.DimIndustryKey, 
+    djf.DimJobFunctionKey, 
+    dgjf.DimGroupJobFunctionKey;</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -334,6 +362,24 @@ GROUP BY db.DimBenefitKey, dd.DimDateKey, di.DimIndustryKey;</property>
                       lineageId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[BenefitCount]"
                       name="BenefitCount"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimJobFunctionKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimJobFunctionKey]"
+                      lineageId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimJobFunctionKey]"
+                      name="DimJobFunctionKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimGroupJobFunctionKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimGroupJobFunctionKey]"
+                      lineageId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimGroupJobFunctionKey]"
+                      name="DimGroupJobFunctionKey"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -357,6 +403,14 @@ GROUP BY db.DimBenefitKey, dd.DimDateKey, di.DimIndustryKey;</property>
                       refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[BenefitCount]"
                       dataType="i4"
                       name="BenefitCount" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimJobFunctionKey]"
+                      dataType="i4"
+                      name="DimJobFunctionKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimGroupJobFunctionKey]"
+                      dataType="i4"
+                      name="DimGroupJobFunctionKey" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -379,6 +433,16 @@ GROUP BY db.DimBenefitKey, dd.DimDateKey, di.DimIndustryKey;</property>
                       dataType="i4"
                       lineageId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimIndustryKey]"
                       name="DimIndustryKey" />
+                    <outputColumn
+                      refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimJobFunctionKey]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimJobFunctionKey]"
+                      name="DimJobFunctionKey" />
+                    <outputColumn
+                      refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimGroupJobFunctionKey]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimGroupJobFunctionKey]"
+                      name="DimGroupJobFunctionKey" />
                     <outputColumn
                       refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[BenefitCount]"
                       dataType="i4"
@@ -527,6 +591,18 @@ GROUP BY db.DimBenefitKey, dd.DimDateKey, di.DimIndustryKey;</property>
                       cachedName="DimCityKey"
                       externalMetadataColumnId="Package\DF-Load FactIndustryPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimCityKey]"
                       lineageId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimCityKey]" />
+                    <inputColumn
+                      refId="Package\DF-Load FactIndustryPopularity\DEST_Insert.Inputs[OLE DB Destination Input].Columns[DimJobFunctionKey]"
+                      cachedDataType="i4"
+                      cachedName="DimJobFunctionKey"
+                      externalMetadataColumnId="Package\DF-Load FactIndustryPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimJobFunctionKey]"
+                      lineageId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimJobFunctionKey]" />
+                    <inputColumn
+                      refId="Package\DF-Load FactIndustryPopularity\DEST_Insert.Inputs[OLE DB Destination Input].Columns[DimGroupJobFunctionKey]"
+                      cachedDataType="i4"
+                      cachedName="DimGroupJobFunctionKey"
+                      externalMetadataColumnId="Package\DF-Load FactIndustryPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimGroupJobFunctionKey]"
+                      lineageId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimGroupJobFunctionKey]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -544,12 +620,20 @@ GROUP BY db.DimBenefitKey, dd.DimDateKey, di.DimIndustryKey;</property>
                       name="JobCount" />
                     <externalMetadataColumn
                       refId="Package\DF-Load FactIndustryPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[FactIndustryPopularityKey]"
-                      dataType="i2"
+                      dataType="i4"
                       name="FactIndustryPopularityKey" />
                     <externalMetadataColumn
                       refId="Package\DF-Load FactIndustryPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimCityKey]"
                       dataType="i4"
                       name="DimCityKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactIndustryPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimJobFunctionKey]"
+                      dataType="i4"
+                      name="DimJobFunctionKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactIndustryPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimGroupJobFunctionKey]"
+                      dataType="i4"
+                      name="DimGroupJobFunctionKey" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -603,22 +687,31 @@ GROUP BY db.DimBenefitKey, dd.DimDateKey, di.DimIndustryKey;</property>
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">TRUNCATE TABLE jobDW.dbo.FactIndustryPopularity;
-
-SELECT
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
     di.DimIndustryKey,
+    djf.DimJobFunctionKey,
+    dgjf.DimGroupJobFunctionKey,
     dd.DimDateKey,
     dc.DimCityKey,
     COUNT(j.JobId) AS JobCount
 FROM jobDWStage.dbo.JobStage j
 JOIN jobDWStage.dbo.JobIndustryStage ji ON j.JobId = ji.JobId
 JOIN jobDWStage.dbo.IndustryStage i ON ji.IndustryId = i.IndustryId
+JOIN jobDWStage.dbo.JobFunctionStage f ON j.JobFunctionId = f.JobFunctionId
+JOIN jobDWStage.dbo.GroupJobFunctionStage g ON j.GroupJobFunctionId = g.GroupJobFunctionId
 JOIN jobDWStage.dbo.WorkingLocationStage wl ON j.JobId = wl.JobId
 JOIN jobDWStage.dbo.CityStage cs ON wl.CityId = cs.CityId
 JOIN jobDW.dbo.DimIndustry di ON i.IndustryId = di.IndustryId AND di.RowIsCurrent = '1'
+JOIN jobDW.dbo.DimJobFunction djf ON j.JobFunctionId = djf.JobFunctionId  AND djf.RowIsCurrent = '1'
+JOIN jobDW.dbo.DimGroupJobFunction dgjf ON j.GroupJobFunctionId = dgjf.GroupJobFunctionId AND dgjf.RowIsCurrent = '1'
 JOIN jobDW.dbo.DimDate dd ON CAST(j.OnlineOn AS DATE) = dd.FullDate
 JOIN jobDW.dbo.DimCity dc ON cs.CityId = dc.CityId AND dc.RowIsCurrent = '1'
-GROUP BY di.DimIndustryKey, dd.DimDateKey, dc.DimCityKey;</property>
+GROUP BY 
+    di.DimIndustryKey, 
+    djf.DimJobFunctionKey, 
+    dgjf.DimGroupJobFunctionKey,
+    dd.DimDateKey, 
+    dc.DimCityKey;</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -690,6 +783,24 @@ GROUP BY di.DimIndustryKey, dd.DimDateKey, dc.DimCityKey;</property>
                       lineageId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimCityKey]"
                       name="DimCityKey"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimJobFunctionKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimJobFunctionKey]"
+                      lineageId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimJobFunctionKey]"
+                      name="DimJobFunctionKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimGroupJobFunctionKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimGroupJobFunctionKey]"
+                      lineageId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimGroupJobFunctionKey]"
+                      name="DimGroupJobFunctionKey"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -709,6 +820,14 @@ GROUP BY di.DimIndustryKey, dd.DimDateKey, dc.DimCityKey;</property>
                       refId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimCityKey]"
                       dataType="i4"
                       name="DimCityKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimJobFunctionKey]"
+                      dataType="i4"
+                      name="DimJobFunctionKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimGroupJobFunctionKey]"
+                      dataType="i4"
+                      name="DimGroupJobFunctionKey" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -721,6 +840,16 @@ GROUP BY di.DimIndustryKey, dd.DimDateKey, dc.DimCityKey;</property>
                       dataType="i4"
                       lineageId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimDateKey]"
                       name="DimDateKey" />
+                    <outputColumn
+                      refId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimJobFunctionKey]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimJobFunctionKey]"
+                      name="DimJobFunctionKey" />
+                    <outputColumn
+                      refId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimGroupJobFunctionKey]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimGroupJobFunctionKey]"
+                      name="DimGroupJobFunctionKey" />
                     <outputColumn
                       refId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimIndustryKey]"
                       dataType="i4"
@@ -879,7 +1008,7 @@ GROUP BY di.DimIndustryKey, dd.DimDateKey, dc.DimCityKey;</property>
                     isUsed="True">
                     <externalMetadataColumn
                       refId="Package\DF-Load FactRecruitmentByLocation\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[FactRecruitmentByLocationKey]"
-                      dataType="i2"
+                      dataType="i4"
                       name="FactRecruitmentByLocationKey" />
                     <externalMetadataColumn
                       refId="Package\DF-Load FactRecruitmentByLocation\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimCompanyKey]"
@@ -1241,7 +1370,7 @@ GROUP BY dc.DimCityKey, dd.DimDateKey, dco.DimCompanyKey;</property>
                       name="DimDateKey" />
                     <externalMetadataColumn
                       refId="Package\DF-Load FactSalaryByExperience\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[FactSalaryByExperienceKey]"
-                      dataType="i2"
+                      dataType="i4"
                       name="FactSalaryByExperienceKey" />
                     <externalMetadataColumn
                       refId="Package\DF-Load FactSalaryByExperience\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimJobLevelKey]"
@@ -1645,7 +1774,7 @@ GROUP BY djl.DimJobLevelKey, dd.DimDateKey, di.DimIndustryKey;</property>
                       name="JobCount" />
                     <externalMetadataColumn
                       refId="Package\DF-Load FactSkillDemand\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[FactSkillDemandKey]"
-                      dataType="i2"
+                      dataType="i4"
                       name="FactSkillDemandKey" />
                     <externalMetadataColumn
                       refId="Package\DF-Load FactSkillDemand\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimSkillKey]"
@@ -1959,13 +2088,29 @@ GROUP BY ds.DimSkillKey, dd.DimDateKey, di.DimIndustryKey;</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="206.4,41.6"
-          Id="Package\SQL - Truncate Fact Tables"
-          TopLeft="671.071429872239,133.411764641534" />
+          Size="220,41.6"
+          Id="Package\DF-Load FactBenefitPopularity"
+          TopLeft="887.678573318206,257.961764746938" />
+        <NodeLayout
+          Size="226.4,41.6"
+          Id="Package\DF-Load FactIndustryPopularity"
+          TopLeft="651.428572815292,261.494117599468" />
         <NodeLayout
           Size="248.8,41.6"
           Id="Package\DF-Load FactRecruitmentByLocation"
           TopLeft="151.428571750923,262.294117417148" />
+        <NodeLayout
+          Size="232,41.6"
+          Id="Package\DF-Load FactSalaryByExperience"
+          TopLeft="1122.17857372799,258.470588008735" />
+        <NodeLayout
+          Size="198.4,41.6"
+          Id="Package\DF-Load FactSkillDemand"
+          TopLeft="426.045919274287,261.041176330832" />
+        <NodeLayout
+          Size="206.4,41.6"
+          Id="Package\SQL - Truncate Fact Tables"
+          TopLeft="671.071429872239,133.411764641534" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="774.271429872239,175.011764641534">
@@ -2000,22 +2145,6 @@ GROUP BY ds.DimSkillKey, dd.DimDateKey, di.DimIndustryKey;</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="232,41.6"
-          Id="Package\DF-Load FactSalaryByExperience"
-          TopLeft="1122.17857372799,258.470588008735" />
-        <NodeLayout
-          Size="198.4,41.6"
-          Id="Package\DF-Load FactSkillDemand"
-          TopLeft="426.045919274287,261.041176330832" />
-        <NodeLayout
-          Size="226.4,41.6"
-          Id="Package\DF-Load FactIndustryPopularity"
-          TopLeft="651.428572815292,261.494117599468" />
-        <NodeLayout
-          Size="220,41.6"
-          Id="Package\DF-Load FactBenefitPopularity"
-          TopLeft="887.678573318206,257.961764746938" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="807.338096538906,175.011764641534">
@@ -2156,158 +2285,6 @@ GROUP BY ds.DimSkillKey, dd.DimDateKey, di.DimIndustryKey;</property>
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\DF-Load FactRecruitmentByLocation">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="148.8,41.6"
-          Id="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW"
-          TopLeft="262.142857700891,92.5294116836003" />
-        <NodeLayout
-          Size="137.6,42.4"
-          Id="Package\DF-Load FactRecruitmentByLocation\DEST_Insert"
-          TopLeft="267.142857711534,236.188235176146" />
-        <EdgeLayout
-          Id="Package\DF-Load FactRecruitmentByLocation.Paths[OLE DB Source Output]"
-          TopLeft="336.242857706212,134.1294116836">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,102.058823492546"
-              Start="0,0"
-              End="0,94.5588234925456">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,94.5588234925456" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <TaskHost
-    design-time-name="Package\DF-Load FactSalaryByExperience">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="148.8,41.6"
-          Id="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW"
-          TopLeft="60,60" />
-        <NodeLayout
-          Size="137.6,42.4"
-          Id="Package\DF-Load FactSalaryByExperience\DEST_Insert"
-          TopLeft="65.0000000106437,203.658823492546" />
-        <EdgeLayout
-          Id="Package\DF-Load FactSalaryByExperience.Paths[OLE DB Source Output]"
-          TopLeft="134.100000005322,101.6">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,102.058823492546"
-              Start="0,0"
-              End="0,94.5588234925456">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,94.5588234925456" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <TaskHost
-    design-time-name="Package\DF-Load FactSkillDemand">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="148.8,41.6"
-          Id="Package\DF-Load FactSkillDemand\SRC-Stage-DW"
-          TopLeft="60,60" />
-        <NodeLayout
-          Size="137.6,42.4"
-          Id="Package\DF-Load FactSkillDemand\DEST_Insert"
-          TopLeft="65.0000000106437,203.658823492546" />
-        <EdgeLayout
-          Id="Package\DF-Load FactSkillDemand.Paths[OLE DB Source Output]"
-          TopLeft="134.100000005322,101.6">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,102.058823492546"
-              Start="0,0"
-              End="0,94.5588234925456">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,94.5588234925456" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <TaskHost
-    design-time-name="Package\DF-Load FactIndustryPopularity">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="148.8,41.6"
-          Id="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW"
-          TopLeft="60,60" />
-        <NodeLayout
-          Size="137.6,42.4"
-          Id="Package\DF-Load FactIndustryPopularity\DEST_Insert"
-          TopLeft="65.0000000106437,203.658823492546" />
-        <EdgeLayout
-          Id="Package\DF-Load FactIndustryPopularity.Paths[OLE DB Source Output]"
-          TopLeft="134.100000005322,101.6">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,102.058823492546"
-              Start="0,0"
-              End="0,94.558823492546">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,94.558823492546" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <TaskHost
     design-time-name="Package\DF-Load FactBenefitPopularity">
     <LayoutInfo>
       <GraphLayout
@@ -2346,57 +2323,7 @@ GROUP BY ds.DimSkillKey, dd.DimDateKey, di.DimIndustryKey;</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\DF-Load FactRecruitmentByLocation\DEST_Insert">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\DF-Load FactSkillDemand\SRC-Stage-DW">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\DF-Load FactSkillDemand\DEST_Insert">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\DF-Load FactIndustryPopularity\DEST_Insert">
+    design-time-name="Package\DF-Load FactBenefitPopularity\DEST_Insert">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2416,8 +2343,46 @@ GROUP BY ds.DimSkillKey, dd.DimDateKey, di.DimIndustryKey;</property>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\DF-Load FactIndustryPopularity">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="137.6,42.4"
+          Id="Package\DF-Load FactIndustryPopularity\DEST_Insert"
+          TopLeft="65.0000000106437,203.658823492546" />
+        <NodeLayout
+          Size="148.8,41.6"
+          Id="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW"
+          TopLeft="60,60" />
+        <EdgeLayout
+          Id="Package\DF-Load FactIndustryPopularity.Paths[OLE DB Source Output]"
+          TopLeft="134.100000005322,101.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,102.058823492546"
+              Start="0,0"
+              End="0,94.558823492546">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,94.558823492546" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\DF-Load FactBenefitPopularity\DEST_Insert">
+    design-time-name="Package\DF-Load FactIndustryPopularity\DEST_Insert">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2426,6 +2391,185 @@ GROUP BY ds.DimSkillKey, dd.DimDateKey, di.DimIndustryKey;</property>
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\DF-Load FactRecruitmentByLocation">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="137.6,42.4"
+          Id="Package\DF-Load FactRecruitmentByLocation\DEST_Insert"
+          TopLeft="267.142857711534,236.188235176146" />
+        <NodeLayout
+          Size="148.8,41.6"
+          Id="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW"
+          TopLeft="262.142857700891,92.5294116836003" />
+        <EdgeLayout
+          Id="Package\DF-Load FactRecruitmentByLocation.Paths[OLE DB Source Output]"
+          TopLeft="336.242857706212,134.1294116836">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,102.058823492546"
+              Start="0,0"
+              End="0,94.5588234925456">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,94.5588234925456" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF-Load FactRecruitmentByLocation\DEST_Insert">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\DF-Load FactSalaryByExperience">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="148.8,41.6"
+          Id="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW"
+          TopLeft="60,60" />
+        <NodeLayout
+          Size="137.6,42.4"
+          Id="Package\DF-Load FactSalaryByExperience\DEST_Insert"
+          TopLeft="65.0000000106437,203.658823492546" />
+        <EdgeLayout
+          Id="Package\DF-Load FactSalaryByExperience.Paths[OLE DB Source Output]"
+          TopLeft="134.100000005322,101.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,102.058823492546"
+              Start="0,0"
+              End="0,94.5588234925456">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,94.5588234925456" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF-Load FactSalaryByExperience\DEST_Insert">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\DF-Load FactSkillDemand">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="148.8,41.6"
+          Id="Package\DF-Load FactSkillDemand\SRC-Stage-DW"
+          TopLeft="60,60" />
+        <NodeLayout
+          Size="137.6,42.4"
+          Id="Package\DF-Load FactSkillDemand\DEST_Insert"
+          TopLeft="65.0000000106437,203.658823492546" />
+        <EdgeLayout
+          Id="Package\DF-Load FactSkillDemand.Paths[OLE DB Source Output]"
+          TopLeft="134.100000005322,101.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,102.058823492546"
+              Start="0,0"
+              End="0,94.5588234925456">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,94.5588234925456" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF-Load FactSkillDemand\DEST_Insert">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF-Load FactSkillDemand\SRC-Stage-DW">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

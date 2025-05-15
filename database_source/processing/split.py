@@ -48,8 +48,6 @@ language_data = []
 job_data = []
 working_location_data = []
 job_industry_data = []
-job_job_function_data = []
-job_group_job_function_data = []
 job_skill_data = []
 job_benefit_data = []
 
@@ -58,12 +56,7 @@ output_dir = '.'  # Sửa thành C:\data
 os.makedirs(output_dir, exist_ok=True)
 
 
-# Lượt 1: Thu thập ID hợp lệ
-for job in data:
-    company_id = job.get('companyId')
-    language_id = job.get('languageSelectedId')
-
-# Lượt 2: Xử lý dữ liệu
+# Xử lý dữ liệu
 for job in data:
     job_id = job.get('jobId')
     company_id = job.get('companyId')
@@ -71,8 +64,8 @@ for job in data:
     benefits = job.get('benefits') or []
     industries = job.get('industriesV3') or []
     skills = job.get('skills') or []
-    job_functions = job.get('jobFunctionsV3') or {}
-    group_job_functions = job.get('groupJobFunctionsV3') or {}
+    job_function_id = job.get('jobFunctionsV3').get('jobFunctionV3Id')
+    group_job_function_id = job.get('groupJobFunctionsV3').get('groupJobFunctionV3Id')
     language_id = job.get('languageSelectedId')
 
     # Bảng Job
@@ -94,7 +87,9 @@ for job in data:
         'IsMobileHotJob': 1 if job.get('isMobileHotJob') else 0,
         'JobDescription': html_to_text(job.get('jobDescription')) or '',
         'JobRequirement': html_to_text(job.get('jobRequirement')) or '',
-        'LanguageId': language_id
+        'LanguageId': language_id,
+        'JobFunctionId': job_function_id,
+        'GroupJobFunctionId': group_job_function_id
     })
 
     # Bảng Company
@@ -140,32 +135,6 @@ for job in data:
                 'IndustryId': industry_id
             })
 
-    # Bảng JobFunction và JobJobFunction
-    if job_functions and isinstance(job_functions.get('jobFunctionV3Id'), int):
-        job_function_id = job_functions.get('jobFunctionV3Id')
-        job_function_data.append({
-            'JobFunctionId': job_function_id,
-            'JobFunctionName': job_functions.get('jobFunctionV3Name') or '',
-            'JobFunctionNameVI': job_functions.get('jobFunctionV3NameVI') or ''
-        })
-        job_job_function_data.append({
-            'JobId': job_id,
-            'JobFunctionId': job_function_id
-        })
-
-    # Bảng GroupJobFunction và JobGroupJobFunction
-    if group_job_functions and isinstance(group_job_functions.get('groupJobFunctionV3Id'), int):
-        group_job_function_id = group_job_functions.get('groupJobFunctionV3Id')
-        group_job_function_data.append({
-            'GroupJobFunctionId': group_job_function_id,
-            'GroupJobFunctionName': group_job_functions.get('groupJobFunctionV3Name') or '',
-            'GroupJobFunctionNameVI': group_job_functions.get('groupJobFunctionV3NameVI') or ''
-        })
-        job_group_job_function_data.append({
-            'JobId': job_id,
-            'GroupJobFunctionId': group_job_function_id
-        })
-
     # Bảng Skill và JobSkill
     for skill in skills:
         skill_id = skill.get('skillId')
@@ -204,6 +173,22 @@ for job in data:
             'LanguageNameVI': job.get('languageSelectedVI') or ''
         })
 
+    # Bảng JobFunctions
+    if isinstance(job_function_id, int):
+        job_function_data.append({
+            'JobFunctionId': job_function_id,
+            'JobFunctionName': job.get('jobFunctionsV3').get('jobFunctionV3Name') or '',
+            'JobFunctionNameVI': job.get('jobFunctionsV3').get('jobFunctionV3NameVI') or ''
+        })
+
+    # Bảng GroupJobFunction và JobGroupJobFunction
+    if isinstance(group_job_function_id, int):
+        group_job_function_data.append({
+            'GroupJobFunctionId': group_job_function_id,
+            'GroupJobFunctionName': job.get('groupJobFunctionsV3').get('groupJobFunctionV3Name') or '',
+            'GroupJobFunctionNameVI': job.get('groupJobFunctionsV3').get('groupJobFunctionV3NameVI') or ''
+        })
+
 # Tạo DataFrame và loại bỏ trùng lặp
 company_df = pd.DataFrame(company_data).drop_duplicates(subset=['CompanyId'])
 city_df = pd.DataFrame(city_data).drop_duplicates(subset=['CityId'])
@@ -216,8 +201,6 @@ language_df = pd.DataFrame(language_data).drop_duplicates(subset=['LanguageId'])
 job_df = pd.DataFrame(job_data).drop_duplicates(subset=['JobId'])
 working_location_df = pd.DataFrame(working_location_data).drop_duplicates(subset=['WorkingLocationId'])
 job_industry_df = pd.DataFrame(job_industry_data).drop_duplicates(subset=['JobId', 'IndustryId'])
-job_job_function_df = pd.DataFrame(job_job_function_data).drop_duplicates(subset=['JobId', 'JobFunctionId'])
-job_group_job_function_df = pd.DataFrame(job_group_job_function_data).drop_duplicates(subset=['JobId', 'GroupJobFunctionId'])
 job_skill_df = pd.DataFrame(job_skill_data).drop_duplicates(subset=['JobId', 'SkillId'])
 job_benefit_df = pd.DataFrame(job_benefit_data).drop_duplicates(subset=['JobId', 'BenefitId'])
 
@@ -233,7 +216,5 @@ language_df.to_csv(os.path.join(output_dir, 'language.csv'), index=False, encodi
 job_df.to_csv(os.path.join(output_dir, 'job.csv'), index=False, encoding='utf-8-sig')
 working_location_df.to_csv(os.path.join(output_dir, 'working_location.csv'), index=False, encoding='utf-8-sig')
 job_industry_df.to_csv(os.path.join(output_dir, 'job_industry.csv'), index=False, encoding='utf-8-sig')
-job_job_function_df.to_csv(os.path.join(output_dir, 'job_job_function.csv'), index=False, encoding='utf-8-sig')
-job_group_job_function_df.to_csv(os.path.join(output_dir, 'job_group_job_function.csv'), index=False, encoding='utf-8-sig')
 job_skill_df.to_csv(os.path.join(output_dir, 'job_skill.csv'), index=False, encoding='utf-8-sig')
 job_benefit_df.to_csv(os.path.join(output_dir, 'job_benefit.csv'), index=False, encoding='utf-8-sig')
