@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="BQH.job"
+  DTS:DTSID="{67A59820-FD94-4322-A5C9-0CFD035CF762}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=BQH;Initial Catalog=job;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-JOB_ELT-{67A59820-FD94-4322-A5C9-0CFD035CF762}BQH.job;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

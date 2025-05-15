@@ -16,8 +16,8 @@ CREATE TABLE Company_Stage (
 -- City Stage
 CREATE TABLE City_Stage (
     CityId INT,
-    CityNameVI NVARCHAR(100),
     CityName NVARCHAR(100),
+	CityNameVI NVARCHAR(100),
     ETL_InsertDate DATETIME DEFAULT GETDATE()
 );
 

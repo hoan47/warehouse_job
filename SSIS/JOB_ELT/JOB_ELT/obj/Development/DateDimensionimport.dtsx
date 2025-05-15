@@ -1,0 +1,1736 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/13/2025 11:32:53 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="BQH"
+  DTS:CreatorName="BQH\b2h16"
+  DTS:DTSID="{6F42859C-6B5E-4922-886D-E6BA793FD8A3}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="DateDimensionimport"
+  DTS:PackageType="5"
+  DTS:VersionBuild="114"
+  DTS:VersionGUID="{E7A9DB08-B1F4-4D1F-AFBB-A868C36EA7DA}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[BQH.jobDW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{2B83CF7E-D183-4A46-9518-92A064BFDE3D}"
+      DTS:ObjectName="BQH.jobDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=BQH;Initial Catalog=jobDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-DateDimensionimport-{2B83CF7E-D183-4A46-9518-92A064BFDE3D}BQH.jobDW;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DF_Init_DimDate_From_GeneratedData"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{2567f358-2907-41b8-a8a1-fcfb092fbcfe}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DF_Init_DimDate_From_GeneratedData"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Insert Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimDate]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[BQH.jobDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[BQH.jobDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination.Inputs[OLE DB Destination Input].Columns[FullDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="FullDate"
+                      externalMetadataColumnId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[FullDate]"
+                      lineageId="Package\DF_Init_DimDate_From_GeneratedData\Script Component.Outputs[Output 0].Columns[FullDate]" />
+                    <inputColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination.Inputs[OLE DB Destination Input].Columns[Year]"
+                      cachedDataType="i4"
+                      cachedName="Year"
+                      externalMetadataColumnId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Year]"
+                      lineageId="Package\DF_Init_DimDate_From_GeneratedData\Script Component.Outputs[Output 0].Columns[Year]" />
+                    <inputColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination.Inputs[OLE DB Destination Input].Columns[Quarter]"
+                      cachedDataType="i4"
+                      cachedName="Quarter"
+                      externalMetadataColumnId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Quarter]"
+                      lineageId="Package\DF_Init_DimDate_From_GeneratedData\Script Component.Outputs[Output 0].Columns[Quarter]" />
+                    <inputColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination.Inputs[OLE DB Destination Input].Columns[Month]"
+                      cachedDataType="i4"
+                      cachedName="Month"
+                      externalMetadataColumnId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Month]"
+                      lineageId="Package\DF_Init_DimDate_From_GeneratedData\Script Component.Outputs[Output 0].Columns[Month]" />
+                    <inputColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination.Inputs[OLE DB Destination Input].Columns[MonthName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="MonthName"
+                      externalMetadataColumnId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[MonthName]"
+                      lineageId="Package\DF_Init_DimDate_From_GeneratedData\Script Component.Outputs[Output 0].Columns[MonthName]" />
+                    <inputColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination.Inputs[OLE DB Destination Input].Columns[Day]"
+                      cachedDataType="i4"
+                      cachedName="Day"
+                      externalMetadataColumnId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Day]"
+                      lineageId="Package\DF_Init_DimDate_From_GeneratedData\Script Component.Outputs[Output 0].Columns[Day]" />
+                    <inputColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination.Inputs[OLE DB Destination Input].Columns[DayName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="DayName"
+                      externalMetadataColumnId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[DayName]"
+                      lineageId="Package\DF_Init_DimDate_From_GeneratedData\Script Component.Outputs[Output 0].Columns[DayName]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[DimDateKey]"
+                      dataType="i4"
+                      name="DimDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[FullDate]"
+                      dataType="dbTimeStamp"
+                      name="FullDate" />
+                    <externalMetadataColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Year]"
+                      dataType="i4"
+                      name="Year" />
+                    <externalMetadataColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Quarter]"
+                      dataType="i4"
+                      name="Quarter" />
+                    <externalMetadataColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Month]"
+                      dataType="i4"
+                      name="Month" />
+                    <externalMetadataColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[MonthName]"
+                      dataType="wstr"
+                      length="50"
+                      name="MonthName" />
+                    <externalMetadataColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Day]"
+                      dataType="i4"
+                      name="Day" />
+                    <externalMetadataColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[DayName]"
+                      dataType="wstr"
+                      length="50"
+                      name="DayName" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_Init_DimDate_From_GeneratedData\Script Component"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum.;Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;13"
+              description="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum."
+              name="Script Component"
+              version="13">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Stores the source code of the component"
+                  isArray="true"
+                  name="SourceCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="30">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[ComponentWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services component wrapper
+*  This module defines the base class for your component
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+
+public class UserComponent: ScriptComponent
+{
+    public Connections Connections;
+    public Variables Variables;
+    public UserComponent()
+    {
+        Connections = new Connections(this);
+        Variables = new Variables(this);
+    }
+
+    public Output0Buffer Output0Buffer;
+
+    public virtual void FinishOutputs()
+    {
+    }
+
+    private void MarkOutputsFinished()
+    {
+
+        if (null != Output0Buffer)
+        {
+            Output0Buffer.SetEndOfRowset();
+            Output0Buffer = null;
+        }
+
+    }
+
+    public override void PrimeOutput(int Outputs, int[] OutputIDs, PipelineBuffer[] Buffers, OutputNameMap OutputMap)
+    {
+       for(int Idx = 0; Idx < Outputs; Idx++)
+       {
+            if(OutputIDs[Idx] == GetOutputID(OutputMap, @"Output 0"))
+            {
+                Output0Buffer = new Output0Buffer(Buffers[Idx], GetColumnIndexes(OutputIDs[Idx]), OutputMap);
+            }
+        }
+
+        CreateNewOutputRows();
+
+        FinishOutputs();
+        MarkOutputsFinished();
+
+    }
+
+    public virtual void CreateNewOutputRows()
+    {
+    }
+
+}
+
+public class Connections
+{
+    ScriptComponent ParentComponent;
+
+    public Connections(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+
+public class Variables
+{
+    ScriptComponent ParentComponent;
+
+    public Variables(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.resx]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[main.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[#region Help:  Introduction to the Script Component
+/* The Script Component allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services data flow.
+ *
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script component. */
+#endregion
+
+#region Namespaces
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+#endregion
+
+/// <summary>
+/// This is the class to which to add your code.  Do not change the name, attributes, or parent
+/// of this class.
+/// </summary>
+[Microsoft.SqlServer.Dts.Pipeline.SSISScriptComponentEntryPointAttribute]
+public class ScriptMain : UserComponent
+{
+    #region Help:  Using Integration Services variables and parameters
+    /* To use a variable in this script, first ensure that the variable has been added to
+     * either the list contained in the ReadOnlyVariables property or the list contained in
+     * the ReadWriteVariables property of this script component, according to whether or not your
+     * code needs to write into the variable.  To do so, save this script, close this instance of
+     * Visual Studio, and update the ReadOnlyVariables and ReadWriteVariables properties in the
+     * Script Transformation Editor window.
+     * To use a parameter in this script, follow the same steps. Parameters are always read-only.
+     *
+     * Example of reading from a variable or parameter:
+     *  DateTime startTime = Variables.MyStartTime;
+     *
+     * Example of writing to a variable:
+     *  Variables.myStringVariable = "new value";
+     */
+    #endregion
+
+    #region Help:  Using Integration Services Connnection Managers
+    /* Some types of connection managers can be used in this script component.  See the help topic
+     * "Working with Connection Managers Programatically" for details.
+     *
+     * To use a connection manager in this script, first ensure that the connection manager has
+     * been added to either the list of connection managers on the Connection Managers page of the
+     * script component editor.  To add the connection manager, save this script, close this instance of
+     * Visual Studio, and add the Connection Manager to the list.
+     *
+     * If the component needs to hold a connection open while processing rows, override the
+     * AcquireConnections and ReleaseConnections methods.
+     * 
+     * Example of using an ADO.Net connection manager to acquire a SqlConnection:
+     *  object rawConnection = Connections.SalesDB.AcquireConnection(transaction);
+     *  SqlConnection salesDBConn = (SqlConnection)rawConnection;
+     *
+     * Example of using a File connection manager to acquire a file path:
+     *  object rawConnection = Connections.Prices_zip.AcquireConnection(transaction);
+     *  string filePath = (string)rawConnection;
+     *
+     * Example of releasing a connection manager:
+     *  Connections.SalesDB.ReleaseConnection(rawConnection);
+     */
+    #endregion
+
+    #region Help:  Firing Integration Services Events
+    /* This script component can fire events.
+     *
+     * Example of firing an error event:
+     *  ComponentMetaData.FireError(10, "Process Values", "Bad value", "", 0, out cancel);
+     *
+     * Example of firing an information event:
+     *  ComponentMetaData.FireInformation(10, "Process Values", "Processing has started", "", 0, fireAgain);
+     *
+     * Example of firing a warning event:
+     *  ComponentMetaData.FireWarning(10, "Process Values", "No rows were received", "", 0);
+     */
+    #endregion
+
+    /// <summary>
+    /// This method is called once, before rows begin to be processed in the data flow.
+    ///
+    /// You can remove this method if you don't need to do anything here.
+    /// </summary>
+    public override void PreExecute()
+    {
+        base.PreExecute();
+        /*
+         * Add your code here
+         */
+    }
+
+    /// <summary>
+    /// This method is called after all the rows have passed through this component.
+    ///
+    /// You can delete this method if you don't need to do anything here.
+    /// </summary>
+    public override void PostExecute()
+    {
+        base.PostExecute();
+        /*
+         * Add your code here
+         */
+    }
+
+    public override void CreateNewOutputRows()
+    {
+        DateTime startDate = new DateTime(2020, 1, 1);
+        DateTime endDate = new DateTime(2035, 12, 31);
+        DateTime current = startDate;
+
+        while (current <= endDate)
+        {
+            Output0Buffer.AddRow();
+            Output0Buffer.FullDate = current;
+            Output0Buffer.Year = current.Year;
+            Output0Buffer.Quarter = (current.Month - 1) / 3 + 1;
+            Output0Buffer.Month = current.Month;
+            Output0Buffer.MonthName = current.ToString("MMMM");
+            Output0Buffer.Day = current.Day;
+            Output0Buffer.DayName = current.ToString("dddd");
+
+            current = current.AddDays(1);
+        }
+    }
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[BufferWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services buffer wrappers
+*  This module defines classes for accessing data flow buffers
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+
+public class Output0Buffer: ScriptBuffer
+
+{
+    public Output0Buffer(PipelineBuffer Buffer, int[] BufferColumnIndexes, OutputNameMap OutputMap)
+        : base(Buffer, BufferColumnIndexes, OutputMap)
+    {
+    }
+
+    public Int32 Month
+    {
+        set
+        {
+            this[0] = value;
+        }
+    }
+    public bool Month_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(0);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public Int32 Quarter
+    {
+        set
+        {
+            this[1] = value;
+        }
+    }
+    public bool Quarter_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(1);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public Int32 Year
+    {
+        set
+        {
+            this[2] = value;
+        }
+    }
+    public bool Year_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(2);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public DateTime FullDate
+    {
+        set
+        {
+            this[3] = value;
+        }
+    }
+    public bool FullDate_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(3);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String MonthName
+    {
+        set
+        {
+            this[4] = value;
+        }
+    }
+    public bool MonthName_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(4);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String DayName
+    {
+        set
+        {
+            this[5] = value;
+        }
+    }
+    public bool DayName_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(5);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public Int32 Day
+    {
+        set
+        {
+            this[6] = value;
+        }
+    }
+    public bool Day_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(6);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    new public void AddRow()
+    {
+        base.AddRow();
+    }
+
+    new public void SetEndOfRowset()
+    {
+        base.SetEndOfRowset();
+    }
+
+    new public bool EndOfRowset()
+    {
+        return base.EndOfRowset();
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_73a590237c874e6287efa23af8fb05b3.Properties.Settings.get_Default():SC_73a590237c874e6287efa23af8fb05b3.Properties.Sett" +
+    "ings")]
+
+namespace SC_73a590237c874e6287efa23af8fb05b3.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_73a590237c874e6287efa23af8fb05b3.csproj]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3a390e07-4cd1-40d6-910b-ff7cf567aa40}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SC_73a590237c874e6287efa23af8fb05b3</RootNamespace>
+    <AssemblyName>SC_73a590237c874e6287efa23af8fb05b3</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.TxScript, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSRuntimeWrap, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSPipelineWrap, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.PipelineHost, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Compile Include="main.cs" />
+    <Compile Include="BufferWrapper.cs" />
+    <Compile Include="ComponentWrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- This section defines VSTA properties that describe the host-changable project properties. -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="ScriptComponent" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoExeName="" DebugInfoCommandLine="" DebugInfoWorkingDir="" IconImageList="" />
+        <Host Name="ScriptComponent" GeneratedNamespace="SC_73a590237c874e6287efa23af8fb05b3" IconIndex="0"></Host>
+        <ProjectClient>
+          <HostIdentifier>SSIS_SC160</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Project]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF16LE]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
+  <msb:PropertyGroup>
+    <msb:CodeName>SC_73a590237c874e6287efa23af8fb05b3</msb:CodeName>
+    <msb:Language>msBuild</msb:Language>
+    <msb:DisplayName>SC_73a590237c874e6287efa23af8fb05b3</msb:DisplayName>
+    <msb:ProjectId>{4CD16FFF-79A4-47F4-9E10-29B3164ABC6B}</msb:ProjectId>
+  </msb:PropertyGroup>
+  <msb:ItemGroup>
+    <msb:Project Include="SC_73a590237c874e6287efa23af8fb05b3.csproj" />
+    <msb:File Include="main.cs" />
+    <msb:File Include="BufferWrapper.cs" />
+    <msb:File Include="ComponentWrapper.cs" />
+    <msb:File Include="Properties\Settings.settings" />
+    <msb:File Include="Properties\AssemblyInfo.cs" />
+    <msb:File Include="Properties\Resources.resx" />
+    <msb:File Include="Properties\Resources.Designer.cs" />
+    <msb:File Include="Properties\Settings.Designer.cs" />
+  </msb:ItemGroup>
+</c:Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\AssemblyInfo.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("SC_73a590237c874e6287efa23af8fb05b3")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("SC_73a590237c874e6287efa23af8fb05b3")]
+[assembly: AssemblyCopyright("Copyright @  2025")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.0.0")]
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.settings]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_73a590237c874e6287efa23af8fb05b3.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_73a590237c874e6287efa23af8fb05b3.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_73a590237c874e6287efa23af8fb05b3.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace SC_73a590237c874e6287efa23af8fb05b3.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SC_73a590237c874e6287efa23af8fb05b3.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Stores the binary representation of the component"
+                  isArray="true"
+                  name="BinaryCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="2">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_73a590237c874e6287efa23af8fb05b3.dll]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[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
+MgBxAC4DOAB5AAMFQAB5AAYESgB5AP4DAQDhAAMFEAB5AO8GBgB5AFwGBgB5AF8GUACRAAMFBgCR
+ADQAWACRAP0FXwCZAAMFBgDpAH8AZQDpAAYHbACpAAMFcQDJAAMFBgAuAAsA/AAuABMABQEuABsA
+JAEuACMALQEuACsAVgEuADMAVgEuADsAVgEuAEMALQEuAEsAXAEuAFMAVgEuAFsAcwFDAGMAvQHj
+AGsAvQEBAXsAvQHpAXMAJAEJAnMAJAEbAFQAAwABAAcADwAIABEAAAAoA9wAAAC/A+AAAAD7BNwA
+AADgA+AAAAC0BNwAAADQA+AAAAAeAeQAAACrA+AAAACVAOkAAACDA+AAAACjAOkAAACYA+AAAAAC
+B9wAAADzA+AAAADnBO0AAAD6APIAAABvBvcAAQAGAAMAAQAHAAUAAQAIAAcAAQAJAAkAAQAKAAsA
+AQALAA0AAQAMAA8AAQANABEAAQAOABMAAQAPABUAAQAQABcAAQARABkAAQASABsAAQATAB0AAgAf
+AB8AAgAgACEAAQAhACEAAgAiACMABIAAAAEAAAAAAAAAAAAAAAAABwAAAAQAAAAAAAAAAAAAAHgA
+QAAAAAAAEAAAAAAAAAAAAAAAgQClBgAAAAAQAAAAAAAAAAAAAACBAMIGAAAAAAQAAAAAAAAAAAAA
+AHgADwQAAAAAAAAAAAEAAABeBQAAAAAASW50MzIAU0NfNzNhNTkwMjM3Yzg3NGU2Mjg3ZWZhMjNh
+ZjhmYjA1YjMAPE1vZHVsZT4AR2V0T3V0cHV0SUQAbXNjb3JsaWIATWFya091dHB1dHNGaW5pc2hl
+ZABkZWZhdWx0SW5zdGFuY2UAUnVudGltZVR5cGVIYW5kbGUAR2V0VHlwZUZyb21IYW5kbGUAc2V0
+X01vbnRoTmFtZQBzZXRfRGF5TmFtZQBEYXRlVGltZQBNaWNyb3NvZnQuU3FsU2VydmVyLkR0cy5Q
+aXBlbGluZQBUeXBlAGdldF9DdWx0dXJlAHNldF9DdWx0dXJlAHJlc291cmNlQ3VsdHVyZQBBcHBs
+aWNhdGlvblNldHRpbmdzQmFzZQBzZXRfRnVsbERhdGUARWRpdG9yQnJvd3NhYmxlU3RhdGUAQ29t
+cGlsZXJHZW5lcmF0ZWRBdHRyaWJ1dGUARGVidWdnZXJOb25Vc2VyQ29kZUF0dHJpYnV0ZQBEZWJ1
+Z2dhYmxlQXR0cmlidXRlAEVkaXRvckJyb3dzYWJsZUF0dHJpYnV0ZQBBc3NlbWJseVRpdGxlQXR0
+cmlidXRlAEFzc2VtYmx5VHJhZGVtYXJrQXR0cmlidXRlAFRhcmdldEZyYW1ld29ya0F0dHJpYnV0
+ZQBBc3NlbWJseUNvbmZpZ3VyYXRpb25BdHRyaWJ1dGUAQXNzZW1ibHlEZXNjcmlwdGlvbkF0dHJp
+YnV0ZQBDb21waWxhdGlvblJlbGF4YXRpb25zQXR0cmlidXRlAEFzc2VtYmx5UHJvZHVjdEF0dHJp
+YnV0ZQBBc3NlbWJseUNvcHlyaWdodEF0dHJpYnV0ZQBTU0lTU2NyaXB0Q29tcG9uZW50RW50cnlQ
+b2ludEF0dHJpYnV0ZQBBc3NlbWJseUNvbXBhbnlBdHRyaWJ1dGUAUnVudGltZUNvbXBhdGliaWxp
+dHlBdHRyaWJ1dGUAUHJlRXhlY3V0ZQBQb3N0RXhlY3V0ZQB2YWx1ZQBTeXN0ZW0uUnVudGltZS5W
+ZXJzaW9uaW5nAFRvU3RyaW5nAGdldF9Nb250aABzZXRfTW9udGgAb3BfTGVzc1RoYW5PckVxdWFs
+AFN5c3RlbS5Db21wb25lbnRNb2RlbABTQ183M2E1OTAyMzdjODc0ZTYyODdlZmEyM2FmOGZiMDVi
+My5kbGwAc2V0X01vbnRoTmFtZV9Jc051bGwAc2V0X0RheU5hbWVfSXNOdWxsAHNldF9GdWxsRGF0
+ZV9Jc051bGwAc2V0X01vbnRoX0lzTnVsbABzZXRfWWVhcl9Jc051bGwAc2V0X1F1YXJ0ZXJfSXNO
+dWxsAHNldF9EYXlfSXNOdWxsAFNldE51bGwAc2V0X0l0ZW0AU3lzdGVtAHJlc291cmNlTWFuAFNj
+cmlwdE1haW4AU3lzdGVtLkNvbmZpZ3VyYXRpb24AU3lzdGVtLkdsb2JhbGl6YXRpb24AU3lzdGVt
+LlJlZmxlY3Rpb24ASW52YWxpZE9wZXJhdGlvbkV4Y2VwdGlvbgBDdWx0dXJlSW5mbwBPdXRwdXRO
+YW1lTWFwAE91dHB1dE1hcABnZXRfWWVhcgBzZXRfWWVhcgBPdXRwdXQwQnVmZmVyAFBpcGVsaW5l
+QnVmZmVyAFNjcmlwdEJ1ZmZlcgBnZXRfUmVzb3VyY2VNYW5hZ2VyAHNldF9RdWFydGVyAC5jdG9y
+AC5jY3RvcgBPdXRwdXRJRHMAU3lzdGVtLkRpYWdub3N0aWNzAFN5c3RlbS5SdW50aW1lLkNvbXBp
+bGVyU2VydmljZXMAU3lzdGVtLlJlc291cmNlcwBTQ183M2E1OTAyMzdjODc0ZTYyODdlZmEyM2Fm
+OGZiMDViMy5Qcm9wZXJ0aWVzLlJlc291cmNlcy5yZXNvdXJjZXMARGVidWdnaW5nTW9kZXMAU0Nf
+NzNhNTkwMjM3Yzg3NGU2Mjg3ZWZhMjNhZjhmYjA1YjMuUHJvcGVydGllcwBWYXJpYWJsZXMAQnVm
+ZmVyQ29sdW1uSW5kZXhlcwBHZXRDb2x1bW5JbmRleGVzAFNldHRpbmdzAENvbm5lY3Rpb25zAEJ1
+ZmZlcnMARmluaXNoT3V0cHV0cwBDcmVhdGVOZXdPdXRwdXRSb3dzAEFkZERheXMAT2JqZWN0AFNl
+dEVuZE9mUm93c2V0AGdldF9EZWZhdWx0AFVzZXJDb21wb25lbnQAUGFyZW50Q29tcG9uZW50AFNj
+cmlwdENvbXBvbmVudABNaWNyb3NvZnQuU3FsU2VydmVyLlR4U2NyaXB0AE1pY3Jvc29mdC5TcWxT
+ZXJ2ZXIuUGlwZWxpbmVIb3N0AFByaW1lT3V0cHV0AEFkZFJvdwBnZXRfRGF5AHNldF9EYXkAZ2V0
+X0Fzc2VtYmx5AAAACU0ATQBNAE0AAAlkAGQAZABkAACAm0kAcwBOAHUAbABsACAAcAByAG8AcABl
+AHIAdAB5ACAAYwBhAG4AbgBvAHQAIABiAGUAIABzAGUAdAAgAHQAbwAgAEYAYQBsAHMAZQAuACAA
+QQBzAHMAaQBnAG4AIABhACAAdgBhAGwAdQBlACAAdABvACAAdABoAGUAIABjAG8AbAB1AG0AbgAg
+AGkAbgBzAHQAZQBhAGQALgAAEU8AdQB0AHAAdQB0ACAAMAAAcVMAQwBfADcAMwBhADUAOQAwADIA
+MwA3AGMAOAA3ADQAZQA2ADIAOAA3AGUAZgBhADIAMwBhAGYAOABmAGIAMAA1AGIAMwAuAFAAcgBv
+AHAAZQByAHQAaQBlAHMALgBSAGUAcwBvAHUAcgBjAGUAcwAAAACAC29yQ60kT4qC5j2nFI84AAQg
+AQEIAyAAAQUgAQEREQQgAQEOBSABARFdBgcCETkROQYgAwEICAgDIAAIBCABDg4FIAEROQ0HAAIC
+ETkROQkgAwESQR0IEkUFIAIBCBwDIAACAwcBCAYAAggSRQ4FIAEdCAgGAAESdRF5BCAAEn0GIAIB
+DhJ9CLd6XFYZNOCJCImEXc2AgMyRAwYSFAMGEhgDBhIMAwYSSQMGElUDBhJZAwYSIAQgAQECBSAB
+ARE5CyAEAQgdCB0SQRJFBSABARJJBAAAElUEAAASWQUAAQESWQQAABIgAwAAAQMoAAgDKAACBCgA
+ETkDKAAOBAgAElUECAASWQQIABIgCAEACAAAAAAAHgEAAQBUAhZXcmFwTm9uRXhjZXB0aW9uVGhy
+b3dzAQgBAAIAAAAAACgBACNTQ183M2E1OTAyMzdjODc0ZTYyODdlZmEyM2FmOGZiMDViMwAABQEA
+AAAAFgEAEUNvcHlyaWdodCBAICAyMDI1AABJAQAaLk5FVEZyYW1ld29yayxWZXJzaW9uPXY0LjcB
+AFQOFEZyYW1ld29ya0Rpc3BsYXlOYW1lEi5ORVQgRnJhbWV3b3JrIDQuNwQBAAAAAAC0AAAAzsrv
+vgEAAACRAAAAbFN5c3RlbS5SZXNvdXJjZXMuUmVzb3VyY2VSZWFkZXIsIG1zY29ybGliLCBWZXJz
+aW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0
+ZTA4OSNTeXN0ZW0uUmVzb3VyY2VzLlJ1bnRpbWVSZXNvdXJjZVNldAIAAAAAAAAAAAAAAFBBRFBB
+RFC0AAAAyDUAAAAAAAAAAAAA4jUAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAANQ1AAAAAAAAAAAA
+AAAAX0NvckRsbE1haW4AbXNjb3JlZS5kbGwAAAAAAP8lACAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAABABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAAAABI
+AAAAWEAAAOwDAAAAAAAAAAAAAOwDNAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBPAAAA
+AAC9BO/+AAABAAAAAQAAAAAAAAABAAAAAAA/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAA
+AAEAVgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBvAG4A
+AAAAAAAAsARMAwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAAAoAwAAAQAwADAAMAAw
+ADAANABiADAAAAAaAAEAAQBDAG8AbQBtAGUAbgB0AHMAAAAAAAAAIgABAAEAQwBvAG0AcABhAG4A
+eQBOAGEAbQBlAAAAAAAAAAAAcAAkAAEARgBpAGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4AAAAA
+AFMAQwBfADcAMwBhADUAOQAwADIAMwA3AGMAOAA3ADQAZQA2ADIAOAA3AGUAZgBhADIAMwBhAGYA
+OABmAGIAMAA1AGIAMwAAADAACAABAEYAaQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAALgAw
+AC4AMAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBDAF8ANwAzAGEANQA5ADAA
+MgAzADcAYwA4ADcANABlADYAMgA4ADcAZQBmAGEAMgAzAGEAZgA4AGYAYgAwADUAYgAzAC4AZABs
+AGwAAABIABIAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBoAHQAAABDAG8AcAB5AHIAaQBnAGgA
+dAAgAEAAIAAgADIAMAAyADUAAAAqAAEAAQBMAGUAZwBhAGwAVAByAGEAZABlAG0AYQByAGsAcwAA
+AAAAAAAAAHgAKAABAE8AcgBpAGcAaQBuAGEAbABGAGkAbABlAG4AYQBtAGUAAABTAEMAXwA3ADMA
+YQA1ADkAMAAyADMANwBjADgANwA0AGUANgAyADgANwBlAGYAYQAyADMAYQBmADgAZgBiADAANQBi
+ADMALgBkAGwAbAAAAGgAJAABAFAAcgBvAGQAdQBjAHQATgBhAG0AZQAAAAAAUwBDAF8ANwAzAGEA
+NQA5ADAAMgAzADcAYwA4ADcANABlADYAMgA4ADcAZQBmAGEAMgAzAGEAZgA4AGYAYgAwADUAYgAz
+AAAANAAIAAEAUAByAG8AZAB1AGMAdABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgAwAC4AMAAAADgA
+CAABAEEAcwBzAGUAbQBiAGwAeQAgAFYAZQByAHMAaQBvAG4AAAAxAC4AMAAuADAALgAwAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAwAAAD0NQAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the Microsoft Visual Studio Tools for Applications project. Project names must be unique within a package."
+                  name="VSTAProjectName"
+                  typeConverter="NOTBROWSABLE">SC_73a590237c874e6287efa23af8fb05b3</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the programming language used by the script."
+                  name="ScriptLanguage"
+                  typeConverter="Microsoft.SqlServer.VSTAHosting.ScriptingLanguages">CSharp</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read-only variables."
+                  name="ReadOnlyVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read/write variables."
+                  name="ReadWriteVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIWriteableVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="List of breakpoints present on the script."
+                  isArray="true"
+                  name="BreakpointCollection"
+                  typeConverter="NOTBROWSABLE">
+                  <arrayElements
+                    arrayElementCount="0" />
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Checksum to match component metedata against compiled codes."
+                  name="MetadataChecksum140"
+                  typeConverter="NOTBROWSABLE">10</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ScriptComponentHost</property>
+              </properties>
+              <outputs>
+                <output
+                  refId="Package\DF_Init_DimDate_From_GeneratedData\Script Component.Outputs[Output 0]"
+                  hasSideEffects="true"
+                  name="Output 0">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Script Component.Outputs[Output 0].Columns[Month]"
+                      dataType="i4"
+                      lineageId="Package\DF_Init_DimDate_From_GeneratedData\Script Component.Outputs[Output 0].Columns[Month]"
+                      name="Month" />
+                    <outputColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Script Component.Outputs[Output 0].Columns[Quarter]"
+                      dataType="i4"
+                      lineageId="Package\DF_Init_DimDate_From_GeneratedData\Script Component.Outputs[Output 0].Columns[Quarter]"
+                      name="Quarter" />
+                    <outputColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Script Component.Outputs[Output 0].Columns[Year]"
+                      dataType="i4"
+                      lineageId="Package\DF_Init_DimDate_From_GeneratedData\Script Component.Outputs[Output 0].Columns[Year]"
+                      name="Year" />
+                    <outputColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Script Component.Outputs[Output 0].Columns[FullDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DF_Init_DimDate_From_GeneratedData\Script Component.Outputs[Output 0].Columns[FullDate]"
+                      name="FullDate" />
+                    <outputColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Script Component.Outputs[Output 0].Columns[MonthName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\DF_Init_DimDate_From_GeneratedData\Script Component.Outputs[Output 0].Columns[MonthName]"
+                      name="MonthName" />
+                    <outputColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Script Component.Outputs[Output 0].Columns[DayName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\DF_Init_DimDate_From_GeneratedData\Script Component.Outputs[Output 0].Columns[DayName]"
+                      name="DayName" />
+                    <outputColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Script Component.Outputs[Output 0].Columns[Day]"
+                      dataType="i4"
+                      lineageId="Package\DF_Init_DimDate_From_GeneratedData\Script Component.Outputs[Output 0].Columns[Day]"
+                      name="Day" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension"
+              componentClassID="Microsoft.SCD"
+              contactInfo="Slowly Changing Dimension;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Updates a SQL Server Analysis Services data warehouse dimension. Update dimension records that are already present and  insert dimension records that aren't. For example, update the DimProduct table of the AdventureWorksDW OLAP database with data from the Products table in the AdventureWorks OLTP database."
+              name="Slowly Changing Dimension"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SELECT statement used to create a schema rowset."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [Day], [DayName], [FullDate], [Month], [MonthName], [Quarter], [Year] FROM [dbo].[DimDate]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the WHERE clause in the SELECT statement that selects the current row among rows with identical business keys."
+                  name="CurrentRowWhere"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether historical attribute updates are directed to the transformation output for changing attribute updates."
+                  name="UpdateChangingAttributeHistory">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when columns with fixed attributes contain changes."
+                  name="FailOnFixedAttributeChange">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the column name for the inferred member."
+                  name="InferredMemberIndicator"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether inferred member updates are detected."
+                  name="EnableInferredMember">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when a lookup of an existing record fails."
+                  name="FailOnLookupFailure">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies that all rows in the input are new or the transformation detects the change type."
+                  name="IncomingRowChangeType"
+                  typeConverter="IncomingRowChangeType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Connections[LookupConnection]"
+                  connectionManagerID="Package.ConnectionManagers[BQH.jobDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[BQH.jobDW]"
+                  description="Defines the connection to use for lookups in the dimension table"
+                  name="LookupConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
+                  name="Slowly Changing Dimension Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Day]"
+                      cachedDataType="i4"
+                      cachedName="Day"
+                      externalMetadataColumnId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Day]"
+                      lineageId="Package\DF_Init_DimDate_From_GeneratedData\Script Component.Outputs[Output 0].Columns[Day]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">4</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[DayName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="DayName"
+                      externalMetadataColumnId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[DayName]"
+                      lineageId="Package\DF_Init_DimDate_From_GeneratedData\Script Component.Outputs[Output 0].Columns[DayName]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">4</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[FullDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="FullDate"
+                      externalMetadataColumnId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[FullDate]"
+                      lineageId="Package\DF_Init_DimDate_From_GeneratedData\Script Component.Outputs[Output 0].Columns[FullDate]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Month]"
+                      cachedDataType="i4"
+                      cachedName="Month"
+                      externalMetadataColumnId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Month]"
+                      lineageId="Package\DF_Init_DimDate_From_GeneratedData\Script Component.Outputs[Output 0].Columns[Month]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">4</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[MonthName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="MonthName"
+                      externalMetadataColumnId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[MonthName]"
+                      lineageId="Package\DF_Init_DimDate_From_GeneratedData\Script Component.Outputs[Output 0].Columns[MonthName]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">4</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Quarter]"
+                      cachedDataType="i4"
+                      cachedName="Quarter"
+                      externalMetadataColumnId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Quarter]"
+                      lineageId="Package\DF_Init_DimDate_From_GeneratedData\Script Component.Outputs[Output 0].Columns[Quarter]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">4</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Year]"
+                      cachedDataType="i4"
+                      cachedName="Year"
+                      externalMetadataColumnId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Year]"
+                      lineageId="Package\DF_Init_DimDate_From_GeneratedData\Script Component.Outputs[Output 0].Columns[Year]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">4</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Day]"
+                      dataType="i4"
+                      name="Day" />
+                    <externalMetadataColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[DayName]"
+                      dataType="wstr"
+                      length="50"
+                      name="DayName" />
+                    <externalMetadataColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[FullDate]"
+                      dataType="dbTimeStamp"
+                      name="FullDate" />
+                    <externalMetadataColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Month]"
+                      dataType="i4"
+                      name="Month" />
+                    <externalMetadataColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[MonthName]"
+                      dataType="wstr"
+                      length="50"
+                      name="MonthName" />
+                    <externalMetadataColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Quarter]"
+                      dataType="i4"
+                      name="Quarter" />
+                    <externalMetadataColumn
+                      refId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Year]"
+                      dataType="i4"
+                      name="Year" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Outputs[Unchanged Output]"
+                  description="Unchanged rows"
+                  exclusionGroup="1"
+                  name="Unchanged Output"
+                  synchronousInputId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Outputs[New Output]"
+                  description="New rows"
+                  exclusionGroup="1"
+                  name="New Output"
+                  synchronousInputId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Outputs[Fixed Attribute Output]"
+                  description="Rows with changes in columns tagged FixedAttribute"
+                  exclusionGroup="1"
+                  name="Fixed Attribute Output"
+                  synchronousInputId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Outputs[Changing Attribute Updates Output]"
+                  description="These rows contain new information for ChangingAttribute (Type 1) column changes"
+                  exclusionGroup="1"
+                  name="Changing Attribute Updates Output"
+                  synchronousInputId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Outputs[Historical Attribute Inserts Output]"
+                  description="HistoricalAttribute (Type 2) changes result in these new rows"
+                  exclusionGroup="2"
+                  name="Historical Attribute Inserts Output"
+                  synchronousInputId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Outputs[Inferred Member Updates Output]"
+                  description="Information to update unpopulated initial dimension row"
+                  exclusionGroup="1"
+                  name="Inferred Member Updates Output"
+                  synchronousInputId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DF_Init_DimDate_From_GeneratedData.Paths[New Output]"
+              endId="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination.Inputs[OLE DB Destination Input]"
+              name="New Output"
+              startId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Outputs[New Output]" />
+            <path
+              refId="Package\DF_Init_DimDate_From_GeneratedData.Paths[Output 0]"
+              endId="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
+              name="Output 0"
+              startId="Package\DF_Init_DimDate_From_GeneratedData\Script Component.Outputs[Output 0]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="266.4,41.6"
+          Id="Package\DF_Init_DimDate_From_GeneratedData"
+          TopLeft="238.766234274504,223.715694655716" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DF_Init_DimDate_From_GeneratedData">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\DF_Init_DimDate_From_GeneratedData\Script Component"
+          TopLeft="229.5,5.49999999999995" />
+        <NodeLayout
+          Size="208,41.6"
+          Id="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension"
+          TopLeft="206.7,107.1" />
+        <EdgeLayout
+          Id="Package\DF_Init_DimDate_From_GeneratedData.Paths[Output 0]"
+          TopLeft="310.7,47.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination"
+          TopLeft="5.50000000000004,208.7" />
+        <EdgeLayout
+          Id="Package\DF_Init_DimDate_From_GeneratedData.Paths[New Output]"
+          TopLeft="310.7,148.7">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-224,60"
+              Start="0,0"
+              End="-224,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="-4,30" />
+                  <mssgle:LineSegment
+                    End="-220,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-220,30"
+                    Point2="-224,30"
+                    Point3="-224,34" />
+                  <mssgle:LineSegment
+                    End="-224,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-139.09138671875,35,54.1827734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_Init_DimDate_From_GeneratedData\Slowly Changing Dimension">
+    <Properties>
+      <Property>
+        <Name>SCDMetadata</Name>
+        <Value
+          type="q2:string">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SCDWizardMetadata xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;ConnectionID&gt;{2B83CF7E-D183-4A46-9518-92A064BFDE3D}&lt;/ConnectionID&gt;
+  &lt;TableName&gt;[dbo].[DimDate]&lt;/TableName&gt;
+  &lt;InputToColumnsCollection&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Script Component.Outputs[Output 0].Columns[Day]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Day&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;FixedAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Script Component.Outputs[Output 0].Columns[DayName]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;DayName&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;FixedAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Script Component.Outputs[Output 0].Columns[FullDate]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;FullDate&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Script Component.Outputs[Output 0].Columns[Month]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Month&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;FixedAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Script Component.Outputs[Output 0].Columns[MonthName]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;MonthName&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;FixedAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Script Component.Outputs[Output 0].Columns[Quarter]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Quarter&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;FixedAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Script Component.Outputs[Output 0].Columns[Year]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Year&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;FixedAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+  &lt;/InputToColumnsCollection&gt;
+  &lt;GeneratedComponentsIdentificationStrings&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Insert Destination&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command&lt;/anyType&gt;
+  &lt;/GeneratedComponentsIdentificationStrings&gt;
+  &lt;FailFixedAttribute&gt;false&lt;/FailFixedAttribute&gt;
+  &lt;FailChangeAttribute&gt;false&lt;/FailChangeAttribute&gt;
+  &lt;UseStartEndDate&gt;false&lt;/UseStartEndDate&gt;
+  &lt;CurrentIndicatorColumn /&gt;
+  &lt;InferredIndicatorColumn /&gt;
+  &lt;ValueCurrent /&gt;
+  &lt;ValueExpired /&gt;
+  &lt;StartDateColumn /&gt;
+  &lt;EndDateColumn /&gt;
+  &lt;DateVariable /&gt;
+  &lt;EnableInferredSupport&gt;true&lt;/EnableInferredSupport&gt;
+&lt;/SCDWizardMetadata&gt;</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_Init_DimDate_From_GeneratedData\Insert Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

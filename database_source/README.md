@@ -21,9 +21,6 @@
 Company → Job
 Một công ty có thể đăng nhiều công việc (1:N).
 
-City → District
-Một thành phố có thể có nhiều quận/huyện (1:N).
-
 Industry ↔ Job (thông qua bảng trung gian JobIndustry)
 Một ngành nghề có thể áp dụng cho nhiều công việc và ngược lại (N:M).
 

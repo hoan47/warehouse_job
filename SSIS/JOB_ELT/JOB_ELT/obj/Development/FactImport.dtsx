@@ -1,0 +1,2433 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/14/2025 1:01:05 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="BQH"
+  DTS:CreatorName="BQH\b2h16"
+  DTS:DTSID="{81AC9A81-79E3-4DFF-8B22-3228EE6745DA}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{5372F8B5-7A39-4007-8FAE-7618892B18AE}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[BQH.jobDW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{3D4A2EC1-8076-4AB1-897E-0AA9232DB036}"
+      DTS:ObjectName="BQH.jobDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=BQH;Initial Catalog=jobDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{3D4A2EC1-8076-4AB1-897E-0AA9232DB036}BQH.jobDW;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[BQH.jobDW 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E4813CB5-5B0B-440A-9E18-4F5458D8DF96}"
+      DTS:ObjectName="BQH.jobDW 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=BQH;Initial Catalog=jobDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package-{E4813CB5-5B0B-440A-9E18-4F5458D8DF96}BQH.jobDW;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DF-Load FactBenefitPopularity"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{68637fdc-00b5-4246-b46b-563e806a3603}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DF-Load FactBenefitPopularity"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DF-Load FactBenefitPopularity\DEST_Insert"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DEST_Insert"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[FactBenefitPopularity]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[BQH.jobDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[BQH.jobDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].Columns[DimDateKey]"
+                      cachedDataType="i4"
+                      cachedName="DimDateKey"
+                      externalMetadataColumnId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimDateKey]"
+                      lineageId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimDateKey]" />
+                    <inputColumn
+                      refId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].Columns[DimIndustryKey]"
+                      cachedDataType="i4"
+                      cachedName="DimIndustryKey"
+                      externalMetadataColumnId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimIndustryKey]"
+                      lineageId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimIndustryKey]" />
+                    <inputColumn
+                      refId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].Columns[JobCount]"
+                      cachedDataType="i4"
+                      cachedName="JobCount"
+                      externalMetadataColumnId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[JobCount]"
+                      lineageId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[JobCount]" />
+                    <inputColumn
+                      refId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].Columns[DimBenefitKey]"
+                      cachedDataType="i4"
+                      cachedName="DimBenefitKey"
+                      externalMetadataColumnId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimBenefitKey]"
+                      lineageId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimBenefitKey]" />
+                    <inputColumn
+                      refId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].Columns[BenefitCount]"
+                      cachedDataType="i4"
+                      cachedName="BenefitCount"
+                      externalMetadataColumnId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[BenefitCount]"
+                      lineageId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[BenefitCount]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimDateKey]"
+                      dataType="i4"
+                      name="DimDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimIndustryKey]"
+                      dataType="i4"
+                      name="DimIndustryKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[JobCount]"
+                      dataType="i4"
+                      name="JobCount" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[FactBenefitPopularityKey]"
+                      dataType="i2"
+                      name="FactBenefitPopularityKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimBenefitKey]"
+                      dataType="i4"
+                      name="DimBenefitKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[BenefitCount]"
+                      dataType="i4"
+                      name="BenefitCount" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SRC-Stage-DW"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[BenefitTypeStage]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    db.DimBenefitKey,
+    dd.DimDateKey,
+    di.DimIndustryKey,
+    COUNT(jb.BenefitId) AS BenefitCount,
+    COUNT(DISTINCT jb.JobId) AS JobCount
+FROM jobDWStage.dbo.JobBenefitStage jb
+JOIN jobDWStage.dbo.BenefitTypeStage bt ON jb.BenefitId = bt.BenefitId
+JOIN jobDWStage.dbo.JobStage j ON jb.JobId = j.JobId
+JOIN jobDWStage.dbo.JobIndustryStage ji ON j.JobId = ji.JobId
+JOIN jobDWStage.dbo.IndustryStage i ON ji.IndustryId = i.IndustryId
+JOIN jobDW.dbo.DimBenefit db ON bt.BenefitId = db.BenefitId AND db.RowIsCurrent = '1'
+JOIN jobDW.dbo.DimDate dd ON CAST(j.OnlineOn AS DATE) = dd.FullDate
+JOIN jobDW.dbo.DimIndustry di ON i.IndustryId = di.IndustryId AND di.RowIsCurrent = '1'
+GROUP BY db.DimBenefitKey, dd.DimDateKey, di.DimIndustryKey;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[BQH.jobDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[BQH.jobDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimDateKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimDateKey]"
+                      lineageId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimDateKey]"
+                      name="DimDateKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[JobCount]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[JobCount]"
+                      lineageId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[JobCount]"
+                      name="JobCount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimIndustryKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimIndustryKey]"
+                      lineageId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimIndustryKey]"
+                      name="DimIndustryKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimBenefitKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimBenefitKey]"
+                      lineageId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimBenefitKey]"
+                      name="DimBenefitKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[BenefitCount]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[BenefitCount]"
+                      lineageId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[BenefitCount]"
+                      name="BenefitCount"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimDateKey]"
+                      dataType="i4"
+                      name="DimDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[JobCount]"
+                      dataType="i4"
+                      name="JobCount" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimIndustryKey]"
+                      dataType="i4"
+                      name="DimIndustryKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimBenefitKey]"
+                      dataType="i4"
+                      name="DimBenefitKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[BenefitCount]"
+                      dataType="i4"
+                      name="BenefitCount" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimBenefitKey]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimBenefitKey]"
+                      name="DimBenefitKey" />
+                    <outputColumn
+                      refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimDateKey]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimDateKey]"
+                      name="DimDateKey" />
+                    <outputColumn
+                      refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimIndustryKey]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimIndustryKey]"
+                      name="DimIndustryKey" />
+                    <outputColumn
+                      refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[BenefitCount]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[BenefitCount]"
+                      name="BenefitCount" />
+                    <outputColumn
+                      refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[JobCount]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[JobCount]"
+                      name="JobCount" />
+                    <outputColumn
+                      refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DF-Load FactBenefitPopularity.Paths[OLE DB Source Output]"
+              endId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DF-Load FactIndustryPopularity"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{bfeb29c1-ac3a-465e-8f3a-15e632440c7a}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DF-Load FactIndustryPopularity"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DF-Load FactIndustryPopularity\DEST_Insert"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DEST_Insert"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[FactIndustryPopularity]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF-Load FactIndustryPopularity\DEST_Insert.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[BQH.jobDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[BQH.jobDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF-Load FactIndustryPopularity\DEST_Insert.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF-Load FactIndustryPopularity\DEST_Insert.Inputs[OLE DB Destination Input].Columns[DimDateKey]"
+                      cachedDataType="i4"
+                      cachedName="DimDateKey"
+                      externalMetadataColumnId="Package\DF-Load FactIndustryPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimDateKey]"
+                      lineageId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimDateKey]" />
+                    <inputColumn
+                      refId="Package\DF-Load FactIndustryPopularity\DEST_Insert.Inputs[OLE DB Destination Input].Columns[DimIndustryKey]"
+                      cachedDataType="i4"
+                      cachedName="DimIndustryKey"
+                      externalMetadataColumnId="Package\DF-Load FactIndustryPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimIndustryKey]"
+                      lineageId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimIndustryKey]" />
+                    <inputColumn
+                      refId="Package\DF-Load FactIndustryPopularity\DEST_Insert.Inputs[OLE DB Destination Input].Columns[JobCount]"
+                      cachedDataType="i4"
+                      cachedName="JobCount"
+                      externalMetadataColumnId="Package\DF-Load FactIndustryPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[JobCount]"
+                      lineageId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[JobCount]" />
+                    <inputColumn
+                      refId="Package\DF-Load FactIndustryPopularity\DEST_Insert.Inputs[OLE DB Destination Input].Columns[DimCityKey]"
+                      cachedDataType="i4"
+                      cachedName="DimCityKey"
+                      externalMetadataColumnId="Package\DF-Load FactIndustryPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimCityKey]"
+                      lineageId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimCityKey]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactIndustryPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimDateKey]"
+                      dataType="i4"
+                      name="DimDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactIndustryPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimIndustryKey]"
+                      dataType="i4"
+                      name="DimIndustryKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactIndustryPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[JobCount]"
+                      dataType="i4"
+                      name="JobCount" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactIndustryPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[FactIndustryPopularityKey]"
+                      dataType="i2"
+                      name="FactIndustryPopularityKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactIndustryPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimCityKey]"
+                      dataType="i4"
+                      name="DimCityKey" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF-Load FactIndustryPopularity\DEST_Insert.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DF-Load FactIndustryPopularity\DEST_Insert.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF-Load FactIndustryPopularity\DEST_Insert.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactIndustryPopularity\DEST_Insert.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF-Load FactIndustryPopularity\DEST_Insert.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactIndustryPopularity\DEST_Insert.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SRC-Stage-DW"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[BenefitTypeStage]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">TRUNCATE TABLE jobDW.dbo.FactIndustryPopularity;
+
+SELECT
+    di.DimIndustryKey,
+    dd.DimDateKey,
+    dc.DimCityKey,
+    COUNT(j.JobId) AS JobCount
+FROM jobDWStage.dbo.JobStage j
+JOIN jobDWStage.dbo.JobIndustryStage ji ON j.JobId = ji.JobId
+JOIN jobDWStage.dbo.IndustryStage i ON ji.IndustryId = i.IndustryId
+JOIN jobDWStage.dbo.WorkingLocationStage wl ON j.JobId = wl.JobId
+JOIN jobDWStage.dbo.CityStage cs ON wl.CityId = cs.CityId
+JOIN jobDW.dbo.DimIndustry di ON i.IndustryId = di.IndustryId AND di.RowIsCurrent = '1'
+JOIN jobDW.dbo.DimDate dd ON CAST(j.OnlineOn AS DATE) = dd.FullDate
+JOIN jobDW.dbo.DimCity dc ON cs.CityId = dc.CityId AND dc.RowIsCurrent = '1'
+GROUP BY di.DimIndustryKey, dd.DimDateKey, dc.DimCityKey;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[BQH.jobDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[BQH.jobDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimDateKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimDateKey]"
+                      lineageId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimDateKey]"
+                      name="DimDateKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[JobCount]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[JobCount]"
+                      lineageId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[JobCount]"
+                      name="JobCount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimIndustryKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimIndustryKey]"
+                      lineageId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimIndustryKey]"
+                      name="DimIndustryKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimCityKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimCityKey]"
+                      lineageId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimCityKey]"
+                      name="DimCityKey"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimDateKey]"
+                      dataType="i4"
+                      name="DimDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[JobCount]"
+                      dataType="i4"
+                      name="JobCount" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimIndustryKey]"
+                      dataType="i4"
+                      name="DimIndustryKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimCityKey]"
+                      dataType="i4"
+                      name="DimCityKey" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimDateKey]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimDateKey]"
+                      name="DimDateKey" />
+                    <outputColumn
+                      refId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimIndustryKey]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimIndustryKey]"
+                      name="DimIndustryKey" />
+                    <outputColumn
+                      refId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimCityKey]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimCityKey]"
+                      name="DimCityKey" />
+                    <outputColumn
+                      refId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[JobCount]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[JobCount]"
+                      name="JobCount" />
+                    <outputColumn
+                      refId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DF-Load FactIndustryPopularity.Paths[OLE DB Source Output]"
+              endId="Package\DF-Load FactIndustryPopularity\DEST_Insert.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DF-Load FactRecruitmentByLocation"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{C400F6D5-7C08-47BE-92B5-585BF11DF7D6}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DF-Load FactRecruitmentByLocation"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DF-Load FactRecruitmentByLocation\DEST_Insert"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DEST_Insert"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[FactRecruitmentByLocation]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF-Load FactRecruitmentByLocation\DEST_Insert.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[BQH.jobDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[BQH.jobDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF-Load FactRecruitmentByLocation\DEST_Insert.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF-Load FactRecruitmentByLocation\DEST_Insert.Inputs[OLE DB Destination Input].Columns[DimDateKey]"
+                      cachedDataType="i4"
+                      cachedName="DimDateKey"
+                      externalMetadataColumnId="Package\DF-Load FactRecruitmentByLocation\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimDateKey]"
+                      lineageId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimDateKey]" />
+                    <inputColumn
+                      refId="Package\DF-Load FactRecruitmentByLocation\DEST_Insert.Inputs[OLE DB Destination Input].Columns[DimCompanyKey]"
+                      cachedDataType="i4"
+                      cachedName="DimCompanyKey"
+                      externalMetadataColumnId="Package\DF-Load FactRecruitmentByLocation\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimCompanyKey]"
+                      lineageId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimCompanyKey]" />
+                    <inputColumn
+                      refId="Package\DF-Load FactRecruitmentByLocation\DEST_Insert.Inputs[OLE DB Destination Input].Columns[DimCityKey]"
+                      cachedDataType="i4"
+                      cachedName="DimCityKey"
+                      externalMetadataColumnId="Package\DF-Load FactRecruitmentByLocation\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[CityKey]"
+                      lineageId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimCityKey]" />
+                    <inputColumn
+                      refId="Package\DF-Load FactRecruitmentByLocation\DEST_Insert.Inputs[OLE DB Destination Input].Columns[JobCount]"
+                      cachedDataType="i4"
+                      cachedName="JobCount"
+                      externalMetadataColumnId="Package\DF-Load FactRecruitmentByLocation\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[NumberOfJobPostings]"
+                      lineageId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[JobCount]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactRecruitmentByLocation\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[FactRecruitmentByLocationKey]"
+                      dataType="i2"
+                      name="FactRecruitmentByLocationKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactRecruitmentByLocation\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimCompanyKey]"
+                      dataType="i4"
+                      name="DimCompanyKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactRecruitmentByLocation\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimDateKey]"
+                      dataType="i4"
+                      name="DimDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactRecruitmentByLocation\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[CityKey]"
+                      dataType="i4"
+                      name="CityKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactRecruitmentByLocation\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[NumberOfJobPostings]"
+                      dataType="i4"
+                      name="NumberOfJobPostings" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF-Load FactRecruitmentByLocation\DEST_Insert.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DF-Load FactRecruitmentByLocation\DEST_Insert.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF-Load FactRecruitmentByLocation\DEST_Insert.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactRecruitmentByLocation\DEST_Insert.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF-Load FactRecruitmentByLocation\DEST_Insert.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactRecruitmentByLocation\DEST_Insert.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SRC-Stage-DW"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[BenefitTypeStage]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    dc.DimCityKey,
+    dd.DimDateKey,
+    dco.DimCompanyKey,
+    COUNT(j.JobId) AS JobCount
+FROM jobDWStage.dbo.JobStage j
+JOIN jobDWStage.dbo.WorkingLocationStage wl ON j.JobId = wl.JobId
+JOIN jobDWStage.dbo.CityStage cs ON wl.CityId = cs.CityId
+JOIN jobDWStage.dbo.CompanyStage co ON j.CompanyId = co.CompanyId
+JOIN jobDW.dbo.DimCity dc ON cs.CityId = dc.CityId AND dc.RowIsCurrent = '1'
+JOIN jobDW.dbo.DimDate dd ON CAST(j.OnlineOn AS DATE) = dd.FullDate
+JOIN jobDW.dbo.DimCompany dco 
+    ON co.CompanyId = dco.CompanyId 
+    AND CAST(j.OnlineOn AS DATE) &lt; CAST(dco.RowEndDate AS DATE)
+GROUP BY dc.DimCityKey, dd.DimDateKey, dco.DimCompanyKey;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[BQH.jobDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[BQH.jobDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimCityKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimCityKey]"
+                      lineageId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimCityKey]"
+                      name="DimCityKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimDateKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimDateKey]"
+                      lineageId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimDateKey]"
+                      name="DimDateKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimCompanyKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimCompanyKey]"
+                      lineageId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimCompanyKey]"
+                      name="DimCompanyKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[JobCount]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[JobCount]"
+                      lineageId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[JobCount]"
+                      name="JobCount"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimCityKey]"
+                      dataType="i4"
+                      name="DimCityKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimDateKey]"
+                      dataType="i4"
+                      name="DimDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimCompanyKey]"
+                      dataType="i4"
+                      name="DimCompanyKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[JobCount]"
+                      dataType="i4"
+                      name="JobCount" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimCityKey]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimCityKey]"
+                      name="DimCityKey" />
+                    <outputColumn
+                      refId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimDateKey]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimDateKey]"
+                      name="DimDateKey" />
+                    <outputColumn
+                      refId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimCompanyKey]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimCompanyKey]"
+                      name="DimCompanyKey" />
+                    <outputColumn
+                      refId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[JobCount]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[JobCount]"
+                      name="JobCount" />
+                    <outputColumn
+                      refId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DF-Load FactRecruitmentByLocation.Paths[OLE DB Source Output]"
+              endId="Package\DF-Load FactRecruitmentByLocation\DEST_Insert.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DF-Load FactSalaryByExperience"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{ce553414-c291-43bb-b805-babf08f12d0d}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DF-Load FactSalaryByExperience"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DF-Load FactSalaryByExperience\DEST_Insert"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DEST_Insert"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[FactSalaryByExperience]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF-Load FactSalaryByExperience\DEST_Insert.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[BQH.jobDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[BQH.jobDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF-Load FactSalaryByExperience\DEST_Insert.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF-Load FactSalaryByExperience\DEST_Insert.Inputs[OLE DB Destination Input].Columns[DimDateKey]"
+                      cachedDataType="i4"
+                      cachedName="DimDateKey"
+                      externalMetadataColumnId="Package\DF-Load FactSalaryByExperience\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimDateKey]"
+                      lineageId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimDateKey]" />
+                    <inputColumn
+                      refId="Package\DF-Load FactSalaryByExperience\DEST_Insert.Inputs[OLE DB Destination Input].Columns[DimJobLevelKey]"
+                      cachedDataType="i4"
+                      cachedName="DimJobLevelKey"
+                      externalMetadataColumnId="Package\DF-Load FactSalaryByExperience\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimJobLevelKey]"
+                      lineageId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimJobLevelKey]" />
+                    <inputColumn
+                      refId="Package\DF-Load FactSalaryByExperience\DEST_Insert.Inputs[OLE DB Destination Input].Columns[DimIndustryKey]"
+                      cachedDataType="i4"
+                      cachedName="DimIndustryKey"
+                      externalMetadataColumnId="Package\DF-Load FactSalaryByExperience\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimIndustryKey]"
+                      lineageId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimIndustryKey]" />
+                    <inputColumn
+                      refId="Package\DF-Load FactSalaryByExperience\DEST_Insert.Inputs[OLE DB Destination Input].Columns[AverageSalaryMin]"
+                      cachedDataType="r8"
+                      cachedName="AverageSalaryMin"
+                      externalMetadataColumnId="Package\DF-Load FactSalaryByExperience\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[AverageSalaryMin]"
+                      lineageId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[AverageSalaryMin]" />
+                    <inputColumn
+                      refId="Package\DF-Load FactSalaryByExperience\DEST_Insert.Inputs[OLE DB Destination Input].Columns[AverageSalaryMax]"
+                      cachedDataType="r8"
+                      cachedName="AverageSalaryMax"
+                      externalMetadataColumnId="Package\DF-Load FactSalaryByExperience\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[AverageSalaryMax]"
+                      lineageId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[AverageSalaryMax]" />
+                    <inputColumn
+                      refId="Package\DF-Load FactSalaryByExperience\DEST_Insert.Inputs[OLE DB Destination Input].Columns[JobCount]"
+                      cachedDataType="i4"
+                      cachedName="JobCount"
+                      externalMetadataColumnId="Package\DF-Load FactSalaryByExperience\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[JobCount]"
+                      lineageId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[JobCount]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactSalaryByExperience\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimDateKey]"
+                      dataType="i4"
+                      name="DimDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactSalaryByExperience\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[FactSalaryByExperienceKey]"
+                      dataType="i2"
+                      name="FactSalaryByExperienceKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactSalaryByExperience\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimJobLevelKey]"
+                      dataType="i4"
+                      name="DimJobLevelKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactSalaryByExperience\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimIndustryKey]"
+                      dataType="i4"
+                      name="DimIndustryKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactSalaryByExperience\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[AverageSalaryMin]"
+                      dataType="i4"
+                      name="AverageSalaryMin" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactSalaryByExperience\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[AverageSalaryMax]"
+                      dataType="i4"
+                      name="AverageSalaryMax" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactSalaryByExperience\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[JobCount]"
+                      dataType="i4"
+                      name="JobCount" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF-Load FactSalaryByExperience\DEST_Insert.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DF-Load FactSalaryByExperience\DEST_Insert.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF-Load FactSalaryByExperience\DEST_Insert.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactSalaryByExperience\DEST_Insert.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF-Load FactSalaryByExperience\DEST_Insert.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactSalaryByExperience\DEST_Insert.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SRC-Stage-DW"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[BenefitTypeStage]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    djl.DimJobLevelKey,
+    dd.DimDateKey,
+    di.DimIndustryKey,
+    AVG(CAST(j.SalaryMin AS FLOAT)) AS AverageSalaryMin,
+    AVG(CAST(j.SalaryMax AS FLOAT)) AS AverageSalaryMax,
+    COUNT(j.JobId) AS JobCount
+FROM jobDWStage.dbo.JobStage j
+JOIN jobDWStage.dbo.JobIndustryStage ji ON j.JobId = ji.JobId
+JOIN jobDWStage.dbo.IndustryStage i ON ji.IndustryId = i.IndustryId
+JOIN jobDW.dbo.DimJobLevel djl ON j.JobLevel = djl.JobLevel AND djl.RowIsCurrent = '1'
+JOIN jobDW.dbo.DimDate dd ON CAST(j.OnlineOn AS DATE) = dd.FullDate
+JOIN jobDW.dbo.DimIndustry di ON i.IndustryId = di.IndustryId AND di.RowIsCurrent = '1'
+WHERE j.SalaryMin IS NOT NULL AND j.SalaryMax IS NOT NULL
+GROUP BY djl.DimJobLevelKey, dd.DimDateKey, di.DimIndustryKey;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[BQH.jobDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[BQH.jobDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimDateKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimDateKey]"
+                      lineageId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimDateKey]"
+                      name="DimDateKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[JobCount]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[JobCount]"
+                      lineageId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[JobCount]"
+                      name="JobCount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimJobLevelKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimJobLevelKey]"
+                      lineageId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimJobLevelKey]"
+                      name="DimJobLevelKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimIndustryKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimIndustryKey]"
+                      lineageId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimIndustryKey]"
+                      name="DimIndustryKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[AverageSalaryMin]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[AverageSalaryMin]"
+                      lineageId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[AverageSalaryMin]"
+                      name="AverageSalaryMin"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[AverageSalaryMax]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[AverageSalaryMax]"
+                      lineageId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[AverageSalaryMax]"
+                      name="AverageSalaryMax"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimDateKey]"
+                      dataType="i4"
+                      name="DimDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[JobCount]"
+                      dataType="i4"
+                      name="JobCount" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimJobLevelKey]"
+                      dataType="i4"
+                      name="DimJobLevelKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimIndustryKey]"
+                      dataType="i4"
+                      name="DimIndustryKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[AverageSalaryMin]"
+                      dataType="r8"
+                      name="AverageSalaryMin" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[AverageSalaryMax]"
+                      dataType="r8"
+                      name="AverageSalaryMax" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimJobLevelKey]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimJobLevelKey]"
+                      name="DimJobLevelKey" />
+                    <outputColumn
+                      refId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimDateKey]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimDateKey]"
+                      name="DimDateKey" />
+                    <outputColumn
+                      refId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimIndustryKey]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimIndustryKey]"
+                      name="DimIndustryKey" />
+                    <outputColumn
+                      refId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[AverageSalaryMin]"
+                      dataType="r8"
+                      lineageId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[AverageSalaryMin]"
+                      name="AverageSalaryMin" />
+                    <outputColumn
+                      refId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[AverageSalaryMax]"
+                      dataType="r8"
+                      lineageId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[AverageSalaryMax]"
+                      name="AverageSalaryMax" />
+                    <outputColumn
+                      refId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[JobCount]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[JobCount]"
+                      name="JobCount" />
+                    <outputColumn
+                      refId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DF-Load FactSalaryByExperience.Paths[OLE DB Source Output]"
+              endId="Package\DF-Load FactSalaryByExperience\DEST_Insert.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DF-Load FactSkillDemand"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{36baedeb-cf59-4ce9-8e64-81a2ca6b12e5}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DF-Load FactSkillDemand"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DF-Load FactSkillDemand\DEST_Insert"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DEST_Insert"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[FactSkillDemand]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF-Load FactSkillDemand\DEST_Insert.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[BQH.jobDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[BQH.jobDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF-Load FactSkillDemand\DEST_Insert.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF-Load FactSkillDemand\DEST_Insert.Inputs[OLE DB Destination Input].Columns[DimDateKey]"
+                      cachedDataType="i4"
+                      cachedName="DimDateKey"
+                      externalMetadataColumnId="Package\DF-Load FactSkillDemand\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimDateKey]"
+                      lineageId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimDateKey]" />
+                    <inputColumn
+                      refId="Package\DF-Load FactSkillDemand\DEST_Insert.Inputs[OLE DB Destination Input].Columns[DimIndustryKey]"
+                      cachedDataType="i4"
+                      cachedName="DimIndustryKey"
+                      externalMetadataColumnId="Package\DF-Load FactSkillDemand\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimIndustryKey]"
+                      lineageId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimIndustryKey]" />
+                    <inputColumn
+                      refId="Package\DF-Load FactSkillDemand\DEST_Insert.Inputs[OLE DB Destination Input].Columns[JobCount]"
+                      cachedDataType="i4"
+                      cachedName="JobCount"
+                      externalMetadataColumnId="Package\DF-Load FactSkillDemand\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[JobCount]"
+                      lineageId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[JobCount]" />
+                    <inputColumn
+                      refId="Package\DF-Load FactSkillDemand\DEST_Insert.Inputs[OLE DB Destination Input].Columns[DimSkillKey]"
+                      cachedDataType="i4"
+                      cachedName="DimSkillKey"
+                      externalMetadataColumnId="Package\DF-Load FactSkillDemand\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimSkillKey]"
+                      lineageId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimSkillKey]" />
+                    <inputColumn
+                      refId="Package\DF-Load FactSkillDemand\DEST_Insert.Inputs[OLE DB Destination Input].Columns[SkillCount]"
+                      cachedDataType="i4"
+                      cachedName="SkillCount"
+                      externalMetadataColumnId="Package\DF-Load FactSkillDemand\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[SkillCount]"
+                      lineageId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[SkillCount]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactSkillDemand\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimDateKey]"
+                      dataType="i4"
+                      name="DimDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactSkillDemand\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimIndustryKey]"
+                      dataType="i4"
+                      name="DimIndustryKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactSkillDemand\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[JobCount]"
+                      dataType="i4"
+                      name="JobCount" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactSkillDemand\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[FactSkillDemandKey]"
+                      dataType="i2"
+                      name="FactSkillDemandKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactSkillDemand\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimSkillKey]"
+                      dataType="i4"
+                      name="DimSkillKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactSkillDemand\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[SkillCount]"
+                      dataType="i4"
+                      name="SkillCount" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF-Load FactSkillDemand\DEST_Insert.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DF-Load FactSkillDemand\DEST_Insert.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF-Load FactSkillDemand\DEST_Insert.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactSkillDemand\DEST_Insert.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF-Load FactSkillDemand\DEST_Insert.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactSkillDemand\DEST_Insert.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF-Load FactSkillDemand\SRC-Stage-DW"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SRC-Stage-DW"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[BenefitTypeStage]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    ds.DimSkillKey,
+    dd.DimDateKey,
+    di.DimIndustryKey,
+    COUNT(js.SkillId) AS SkillCount,
+    COUNT(DISTINCT js.JobId) AS JobCount
+FROM jobDWStage.dbo.JobSkillStage js
+JOIN jobDWStage.dbo.SkillStage s ON js.SkillId = s.SkillId
+JOIN jobDWStage.dbo.JobStage j ON js.JobId = j.JobId
+JOIN jobDWStage.dbo.JobIndustryStage ji ON j.JobId = ji.JobId
+JOIN jobDWStage.dbo.IndustryStage i ON ji.IndustryId = i.IndustryId
+JOIN jobDW.dbo.DimSkill ds ON s.SkillId = ds.SkillId AND ds.RowIsCurrent = '1'
+JOIN jobDW.dbo.DimDate dd ON CAST(j.OnlineOn AS DATE) = dd.FullDate
+JOIN jobDW.dbo.DimIndustry di ON i.IndustryId = di.IndustryId AND di.RowIsCurrent = '1'
+GROUP BY ds.DimSkillKey, dd.DimDateKey, di.DimIndustryKey;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[BQH.jobDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[BQH.jobDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimDateKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimDateKey]"
+                      lineageId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimDateKey]"
+                      name="DimDateKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[JobCount]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[JobCount]"
+                      lineageId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[JobCount]"
+                      name="JobCount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimIndustryKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimIndustryKey]"
+                      lineageId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimIndustryKey]"
+                      name="DimIndustryKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimSkillKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimSkillKey]"
+                      lineageId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimSkillKey]"
+                      name="DimSkillKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[SkillCount]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[SkillCount]"
+                      lineageId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[SkillCount]"
+                      name="SkillCount"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimDateKey]"
+                      dataType="i4"
+                      name="DimDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[JobCount]"
+                      dataType="i4"
+                      name="JobCount" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimIndustryKey]"
+                      dataType="i4"
+                      name="DimIndustryKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimSkillKey]"
+                      dataType="i4"
+                      name="DimSkillKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[SkillCount]"
+                      dataType="i4"
+                      name="SkillCount" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimSkillKey]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimSkillKey]"
+                      name="DimSkillKey" />
+                    <outputColumn
+                      refId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimDateKey]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimDateKey]"
+                      name="DimDateKey" />
+                    <outputColumn
+                      refId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimIndustryKey]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[DimIndustryKey]"
+                      name="DimIndustryKey" />
+                    <outputColumn
+                      refId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[SkillCount]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[SkillCount]"
+                      name="SkillCount" />
+                    <outputColumn
+                      refId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[JobCount]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[JobCount]"
+                      name="JobCount" />
+                    <outputColumn
+                      refId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DF-Load FactSkillDemand.Paths[OLE DB Source Output]"
+              endId="Package\DF-Load FactSkillDemand\DEST_Insert.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Truncate Fact Tables"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{537c9421-3c62-4fe8-93a6-9ed161e40e38}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Truncate Fact Tables"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3D4A2EC1-8076-4AB1-897E-0AA9232DB036}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE FactRecruitmentByLocation&#xA;TRUNCATE TABLE FactSalaryByExperience&#xA;TRUNCATE TABLE FactSkillDemand&#xA;TRUNCATE TABLE FactIndustryPopularity&#xA;TRUNCATE TABLE FactBenefitPopularity&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{D96E13CA-196A-4D75-A57C-6DB582F1C025}"
+      DTS:From="Package\SQL - Truncate Fact Tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\DF-Load FactRecruitmentByLocation" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{58F39C9D-341C-4E5C-B36C-EAE65FAD95A3}"
+      DTS:From="Package\SQL - Truncate Fact Tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\DF-Load FactSkillDemand" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{ED5B2F35-46EE-430F-B1CD-1CFB308CFEF2}"
+      DTS:From="Package\SQL - Truncate Fact Tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\DF-Load FactIndustryPopularity" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{93EFC16C-5FA6-4D09-82DA-90F097949B5E}"
+      DTS:From="Package\SQL - Truncate Fact Tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\DF-Load FactBenefitPopularity" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{4A1F6275-72F4-4917-BBF8-F99CF0E86897}"
+      DTS:From="Package\SQL - Truncate Fact Tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\DF-Load FactSalaryByExperience" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="206.4,41.6"
+          Id="Package\SQL - Truncate Fact Tables"
+          TopLeft="671.071429872239,133.411764641534" />
+        <NodeLayout
+          Size="248.8,41.6"
+          Id="Package\DF-Load FactRecruitmentByLocation"
+          TopLeft="151.428571750923,262.294117417148" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="774.271429872239,175.011764641534">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-498.442858121316,87.2823527756138"
+              Start="0,0"
+              End="-498.442858121316,79.7823527756138">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.6411763878069" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,39.6411763878069"
+                    Point2="0,43.6411763878069"
+                    Point3="-4,43.6411763878069" />
+                  <mssgle:LineSegment
+                    End="-494.442858121316,43.6411763878069" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-494.442858121316,43.6411763878069"
+                    Point2="-498.442858121316,43.6411763878069"
+                    Point3="-498.442858121316,47.6411763878069" />
+                  <mssgle:LineSegment
+                    End="-498.442858121316,79.7823527756138" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="232,41.6"
+          Id="Package\DF-Load FactSalaryByExperience"
+          TopLeft="1122.17857372799,258.470588008735" />
+        <NodeLayout
+          Size="198.4,41.6"
+          Id="Package\DF-Load FactSkillDemand"
+          TopLeft="426.045919274287,261.041176330832" />
+        <NodeLayout
+          Size="226.4,41.6"
+          Id="Package\DF-Load FactIndustryPopularity"
+          TopLeft="651.428572815292,261.494117599468" />
+        <NodeLayout
+          Size="220,41.6"
+          Id="Package\DF-Load FactBenefitPopularity"
+          TopLeft="887.678573318206,257.961764746938" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="807.338096538906,175.011764641534">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-282.092177264619,86.0294116892979"
+              Start="0,0"
+              End="-282.092177264619,78.5294116892979">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57.027310870877" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,57.027310870877"
+                    Point2="0,61.027310870877"
+                    Point3="-4,61.027310870877" />
+                  <mssgle:LineSegment
+                    End="-278.092177264619,61.027310870877" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-278.092177264619,61.027310870877"
+                    Point2="-282.092177264619,61.027310870877"
+                    Point3="-282.092177264619,65.027310870877" />
+                  <mssgle:LineSegment
+                    End="-282.092177264619,78.5294116892979" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="823.871429872239,175.011764641534">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-59.2428570569474,86.4823529579339"
+              Start="0,0"
+              End="-59.2428570569474,78.9823529579339">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,65.9830131755806" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,65.9830131755806"
+                    Point2="0,69.9830131755806"
+                    Point3="-4,69.9830131755806" />
+                  <mssgle:LineSegment
+                    End="-55.2428570569474,69.9830131755806" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-55.2428570569474,69.9830131755806"
+                    Point2="-59.2428570569474,69.9830131755806"
+                    Point3="-59.2428570569474,73.9830131755806" />
+                  <mssgle:LineSegment
+                    End="-59.2428570569474,78.9823529579339" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="833.791429872239,175.011764641534">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="163.887143445967,82.9500001054041"
+              Start="0,0"
+              End="163.887143445967,75.4500001054041">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.8053921591623" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,53.8053921591623"
+                    Point2="0,57.8053921591623"
+                    Point3="4,57.8053921591623" />
+                  <mssgle:LineSegment
+                    End="159.887143445967,57.8053921591623" />
+                  <mssgle:CubicBezierSegment
+                    Point1="159.887143445967,57.8053921591623"
+                    Point2="163.887143445967,57.8053921591623"
+                    Point3="163.887143445967,61.8053921591623" />
+                  <mssgle:LineSegment
+                    End="163.887143445967,75.4500001054041" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="840.404763205573,175.011764641534">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="397.773810522416,83.4588233672006"
+              Start="0,0"
+              End="397.773810522416,75.9588233672006">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.7017668929498" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.7017668929498"
+                    Point2="0,29.7017668929498"
+                    Point3="4,29.7017668929498" />
+                  <mssgle:LineSegment
+                    End="393.773810522416,29.7017668929498" />
+                  <mssgle:CubicBezierSegment
+                    Point1="393.773810522416,29.7017668929498"
+                    Point2="397.773810522416,29.7017668929498"
+                    Point3="397.773810522416,33.7017668929498" />
+                  <mssgle:LineSegment
+                    End="397.773810522416,75.9588233672006" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DF-Load FactRecruitmentByLocation">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="148.8,41.6"
+          Id="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW"
+          TopLeft="262.142857700891,92.5294116836003" />
+        <NodeLayout
+          Size="137.6,42.4"
+          Id="Package\DF-Load FactRecruitmentByLocation\DEST_Insert"
+          TopLeft="267.142857711534,236.188235176146" />
+        <EdgeLayout
+          Id="Package\DF-Load FactRecruitmentByLocation.Paths[OLE DB Source Output]"
+          TopLeft="336.242857706212,134.1294116836">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,102.058823492546"
+              Start="0,0"
+              End="0,94.5588234925456">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,94.5588234925456" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\DF-Load FactSalaryByExperience">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="148.8,41.6"
+          Id="Package\DF-Load FactSalaryByExperience\SRC-Stage-DW"
+          TopLeft="60,60" />
+        <NodeLayout
+          Size="137.6,42.4"
+          Id="Package\DF-Load FactSalaryByExperience\DEST_Insert"
+          TopLeft="65.0000000106437,203.658823492546" />
+        <EdgeLayout
+          Id="Package\DF-Load FactSalaryByExperience.Paths[OLE DB Source Output]"
+          TopLeft="134.100000005322,101.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,102.058823492546"
+              Start="0,0"
+              End="0,94.5588234925456">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,94.5588234925456" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\DF-Load FactSkillDemand">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="148.8,41.6"
+          Id="Package\DF-Load FactSkillDemand\SRC-Stage-DW"
+          TopLeft="60,60" />
+        <NodeLayout
+          Size="137.6,42.4"
+          Id="Package\DF-Load FactSkillDemand\DEST_Insert"
+          TopLeft="65.0000000106437,203.658823492546" />
+        <EdgeLayout
+          Id="Package\DF-Load FactSkillDemand.Paths[OLE DB Source Output]"
+          TopLeft="134.100000005322,101.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,102.058823492546"
+              Start="0,0"
+              End="0,94.5588234925456">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,94.5588234925456" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\DF-Load FactIndustryPopularity">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="148.8,41.6"
+          Id="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW"
+          TopLeft="60,60" />
+        <NodeLayout
+          Size="137.6,42.4"
+          Id="Package\DF-Load FactIndustryPopularity\DEST_Insert"
+          TopLeft="65.0000000106437,203.658823492546" />
+        <EdgeLayout
+          Id="Package\DF-Load FactIndustryPopularity.Paths[OLE DB Source Output]"
+          TopLeft="134.100000005322,101.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,102.058823492546"
+              Start="0,0"
+              End="0,94.558823492546">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,94.558823492546" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\DF-Load FactBenefitPopularity">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="148.8,41.6"
+          Id="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW"
+          TopLeft="316.999995276332,111.99999833107" />
+        <NodeLayout
+          Size="137.6,42.4"
+          Id="Package\DF-Load FactBenefitPopularity\DEST_Insert"
+          TopLeft="321.999995286976,255.658821823616" />
+        <EdgeLayout
+          Id="Package\DF-Load FactBenefitPopularity.Paths[OLE DB Source Output]"
+          TopLeft="391.099995281654,153.59999833107">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,102.058823492546"
+              Start="0,0"
+              End="0,94.558823492546">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,94.558823492546" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF-Load FactRecruitmentByLocation\SRC-Stage-DW">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF-Load FactRecruitmentByLocation\DEST_Insert">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF-Load FactSkillDemand\SRC-Stage-DW">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF-Load FactSkillDemand\DEST_Insert">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF-Load FactIndustryPopularity\SRC-Stage-DW">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF-Load FactIndustryPopularity\DEST_Insert">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF-Load FactBenefitPopularity\DEST_Insert">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
