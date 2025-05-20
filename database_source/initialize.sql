@@ -185,4 +185,3 @@ CREATE TABLE JobBenefit (
 -- Ý nghĩa:
 -- JobId, BenefitId: Khóa chính composite, liên kết Job với nhiều lợi ích (N-N).
 -- BenefitValue: Giá trị cụ thể (ví dụ: "Lương tháng 13").
-
