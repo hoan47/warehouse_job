@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\b2h16\\OneDrive\\M\u00E1y t\u00EDnh\\warehouse_job\\SSIS\\JOB_ELT\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F5FD57B9-8841-6865-A399-8D7D7AB92127}|JOB_ELT\\JOB_ELT.dtproj|C:\\Users\\b2h16\\OneDrive\\M\u00E1y t\u00EDnh\\warehouse_job\\SSIS\\JOB_ELT\\JOB_ELT\\DateDimensionimport.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design",
-      "RelativeMoniker": "D:0:0:{F5FD57B9-8841-6865-A399-8D7D7AB92127}|JOB_ELT\\JOB_ELT.dtproj|solutionrelative:JOB_ELT\\DateDimensionimport.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F5FD57B9-8841-6865-A399-8D7D7AB92127}|JOB_ELT\\JOB_ELT.dtproj|C:\\Users\\b2h16\\OneDrive\\M\u00E1y t\u00EDnh\\warehouse_job\\SSIS\\JOB_ELT\\JOB_ELT\\DimensionImport.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design",
       "RelativeMoniker": "D:0:0:{F5FD57B9-8841-6865-A399-8D7D7AB92127}|JOB_ELT\\JOB_ELT.dtproj|solutionrelative:JOB_ELT\\DimensionImport.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F5FD57B9-8841-6865-A399-8D7D7AB92127}|JOB_ELT\\JOB_ELT.dtproj|C:\\Users\\b2h16\\OneDrive\\M\u00E1y t\u00EDnh\\warehouse_job\\SSIS\\JOB_ELT\\JOB_ELT\\DateDimensionimport.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design",
+      "RelativeMoniker": "D:0:0:{F5FD57B9-8841-6865-A399-8D7D7AB92127}|JOB_ELT\\JOB_ELT.dtproj|solutionrelative:JOB_ELT\\DateDimensionimport.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F5FD57B9-8841-6865-A399-8D7D7AB92127}|JOB_ELT\\JOB_ELT.dtproj|C:\\Users\\b2h16\\OneDrive\\M\u00E1y t\u00EDnh\\warehouse_job\\SSIS\\JOB_ELT\\JOB_ELT\\FactImport.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design",
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,7 +30,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "DimensionImport.dtsx [Design]",
               "DocumentMoniker": "C:\\Users\\b2h16\\OneDrive\\M\u00E1y t\u00EDnh\\warehouse_job\\SSIS\\JOB_ELT\\JOB_ELT\\DimensionImport.dtsx",
               "RelativeDocumentMoniker": "JOB_ELT\\DimensionImport.dtsx",
@@ -42,7 +42,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "DateDimensionimport.dtsx [Design]",
               "DocumentMoniker": "C:\\Users\\b2h16\\OneDrive\\M\u00E1y t\u00EDnh\\warehouse_job\\SSIS\\JOB_ELT\\JOB_ELT\\DateDimensionimport.dtsx",
               "RelativeDocumentMoniker": "JOB_ELT\\DateDimensionimport.dtsx",

@@ -1,6 +1,21 @@
 USE job;
 GO
 
+-- Xóa dữ liệu trong các bảng stage trước khi load
+TRUNCATE TABLE jobDWStage.dbo.CompanyStage;
+TRUNCATE TABLE jobDWStage.dbo.CityStage;
+TRUNCATE TABLE jobDWStage.dbo.IndustryStage;
+TRUNCATE TABLE jobDWStage.dbo.JobFunctionStage;
+TRUNCATE TABLE jobDWStage.dbo.GroupJobFunctionStage;
+TRUNCATE TABLE jobDWStage.dbo.SkillStage;
+TRUNCATE TABLE jobDWStage.dbo.BenefitTypeStage;
+TRUNCATE TABLE jobDWStage.dbo.LanguageStage;
+TRUNCATE TABLE jobDWStage.dbo.JobStage;
+TRUNCATE TABLE jobDWStage.dbo.WorkingLocationStage;
+TRUNCATE TABLE jobDWStage.dbo.JobIndustryStage;
+TRUNCATE TABLE jobDWStage.dbo.JobSkillStage;
+TRUNCATE TABLE jobDWStage.dbo.JobBenefitStage;
+
 -- 1. ETL cho bảng CompanyStage
 INSERT INTO jobDWStage.dbo.CompanyStage (CompanyId, CompanyName, CompanyLogo, Address)
 SELECT 

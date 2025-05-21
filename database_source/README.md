@@ -1,18 +1,18 @@
 # database_source
 
-✅ 4324 rows into Company
+✅ 4973 rows into Company
 ✅ 65 rows into City
 ✅ 49 rows into Industry
 ✅ 159 rows into JobFunction
 ✅ 31 rows into GroupJobFunction
-✅ 10200 rows into Skill
+✅ 11294 rows into Skill
 ✅ 15 rows into BenefitType
 ✅ 7 rows into Language
-✅ 11198 rows into Job
-✅ 8744 rows into WorkingLocation
-✅ 11198 rows into JobIndustry
-✅ 53573 rows into JobSkill
-✅ 37663 rows into JobBenefit
+✅ 14217 rows into Job
+✅ 10368 rows into WorkingLocation
+✅ 14217 rows into JobIndustry
+✅ 68091 rows into JobSkill
+✅ 47941 rows into JobBenefit
 
 ## 🧠 Mối Quan Hệ (ERD) tổng thể
 

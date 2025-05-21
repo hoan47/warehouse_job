@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="129"
-  DTS:VersionGUID="{B619A20F-B235-4120-B975-4AAEBED35B71}">
+  DTS:VersionBuild="133"
+  DTS:VersionGUID="{20C54791-3101-4B6B-956F-70433E79A4D3}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -14430,14 +14430,14 @@ WHERE SkillId = ?
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,-64.0507935581867"
+              EndConnector="0,-64.0507935581863"
               Start="0,0"
-              End="0,-56.5507935581867">
+              End="0,-56.5507935581863">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-56.5507935581867" />
+                    End="0,-56.5507935581863" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -14831,17 +14831,17 @@ WHERE SkillId = ?
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-31.5748314370755" />
+                    End="0,-31.5748314370756" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,-31.5748314370755"
-                    Point2="0,-35.5748314370755"
-                    Point3="-4,-35.5748314370755" />
+                    Point1="0,-31.5748314370756"
+                    Point2="0,-35.5748314370756"
+                    Point3="-4,-35.5748314370756" />
                   <mssgle:LineSegment
-                    End="-466.071326700657,-35.5748314370755" />
+                    End="-466.071326700657,-35.5748314370756" />
                   <mssgle:CubicBezierSegment
-                    Point1="-466.071326700657,-35.5748314370755"
-                    Point2="-470.071326700657,-35.5748314370755"
-                    Point3="-470.071326700657,-39.5748314370755" />
+                    Point1="-466.071326700657,-35.5748314370756"
+                    Point2="-470.071326700657,-35.5748314370756"
+                    Point3="-470.071326700657,-39.5748314370756" />
                   <mssgle:LineSegment
                     End="-470.071326700657,-112.247423676585" />
                 </mssgle:SegmentCollection>
@@ -14991,7 +14991,7 @@ WHERE SkillId = ?
     design-time-name="Package\DF-Extract From Source to CompanyStage">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="202.4,41.6"
           Id="Package\DF-Extract From Source to CompanyStage\DST-Stage CompanyStage"
@@ -15019,9 +15019,7 @@ WHERE SkillId = ?
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-25.26357421875,21.9190747447315,50.5271484375,11.228515625"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -15057,7 +15055,7 @@ WHERE SkillId = ?
     design-time-name="Package\DF-Extract From Source to GroupJobFunctionStage">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="332.8,41.6"
           Id="Package\DF-Extract From Source to GroupJobFunctionStage\SRC - ExternalSourcesv_GroupJobFunction_dimension"
@@ -15085,9 +15083,7 @@ WHERE SkillId = ?
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-18.1494140625,27.6633780568839,36.298828125,9.5732421875"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -16010,9 +16006,7 @@ WHERE SkillId = ?
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -16094,9 +16088,7 @@ WHERE SkillId = ?
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -16224,9 +16216,7 @@ WHERE SkillId = ?
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -16339,25 +16329,25 @@ WHERE SkillId = ?
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF-Load from CompanyStage to DimCompany.Paths[Derived Column Output1]"
-          TopLeft="404.577922481483,458.112181376191">
+          TopLeft="404.577922481482,458.112181376191">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,43.6814701486751"
+              EndConnector="0,43.681470148675"
               Start="0,0"
-              End="0,36.1814701486751">
+              End="0,36.181470148675">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,36.1814701486751" />
+                    End="0,36.181470148675" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-8,10.0907350743376,16,16"
+              BoundingBox="-8,10.0907350743375,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -16392,9 +16382,7 @@ WHERE SkillId = ?
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -17703,7 +17691,9 @@ WHERE SkillId = ?
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -17785,7 +17775,9 @@ WHERE SkillId = ?
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout

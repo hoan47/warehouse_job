@@ -3,7 +3,6 @@ import pandas as pd
 from bs4 import BeautifulSoup
 import os
 from datetime import datetime
-import uuid
 
 # Hàm làm sạch HTML
 def html_to_text(html_content):
@@ -55,7 +54,7 @@ job_benefit_data = []
 output_dir = '.'  # Sửa thành C:\data
 os.makedirs(output_dir, exist_ok=True)
 
-
+print("Số lượng bản ghi duy nhất trong dữ liệu ban đầu chưa xử lý:", len(data))
 # Xử lý dữ liệu
 for job in data:
     job_id = job.get('jobId')
@@ -203,6 +202,20 @@ working_location_df = pd.DataFrame(working_location_data).drop_duplicates(subset
 job_industry_df = pd.DataFrame(job_industry_data).drop_duplicates(subset=['JobId', 'IndustryId'])
 job_skill_df = pd.DataFrame(job_skill_data).drop_duplicates(subset=['JobId', 'SkillId'])
 job_benefit_df = pd.DataFrame(job_benefit_data).drop_duplicates(subset=['JobId', 'BenefitId'])
+
+print("Số lượng bản ghi trong company_df:", len(company_df))
+print("Số lượng bản ghi trong city_df:", len(city_df))
+print("Số lượng bản ghi trong industry_df:", len(industry_df))
+print("Số lượng bản ghi trong job_function_df:", len(job_function_df))
+print("Số lượng bản ghi trong group_job_function_df:", len(group_job_function_df))
+print("Số lượng bản ghi trong skill_df:", len(skill_df))
+print("Số lượng bản ghi trong benefit_type_df:", len(benefit_type_df))
+print("Số lượng bản ghi trong language_df:", len(language_df))
+print("Số lượng bản ghi trong job_df:", len(job_df))
+print("Số lượng bản ghi trong working_location_df:", len(working_location_df))
+print("Số lượng bản ghi trong job_industry_df:", len(job_industry_df))
+print("Số lượng bản ghi trong job_skill_df:", len(job_skill_df))
+print("Số lượng bản ghi trong job_benefit_df:", len(job_benefit_df))
 
 # Lưu vào CSV
 company_df.to_csv(os.path.join(output_dir, 'company.csv'), index=False, encoding='utf-8-sig')
