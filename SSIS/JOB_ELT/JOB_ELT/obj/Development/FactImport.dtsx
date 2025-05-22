@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="29"
-  DTS:VersionGUID="{AB416692-C76E-424D-B1B3-CEB947A9A1E9}">
+  DTS:VersionBuild="30"
+  DTS:VersionGUID="{8F75CB3E-D4BA-4F32-AEB1-F20B8C2853B7}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -142,12 +142,6 @@
                       externalMetadataColumnId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimIndustryKey]"
                       lineageId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimIndustryKey]" />
                     <inputColumn
-                      refId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].Columns[JobCount]"
-                      cachedDataType="i4"
-                      cachedName="JobCount"
-                      externalMetadataColumnId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[JobCount]"
-                      lineageId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[JobCount]" />
-                    <inputColumn
                       refId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].Columns[DimBenefitKey]"
                       cachedDataType="i4"
                       cachedName="DimBenefitKey"
@@ -182,10 +176,6 @@
                       refId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimIndustryKey]"
                       dataType="i4"
                       name="DimIndustryKey" />
-                    <externalMetadataColumn
-                      refId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[JobCount]"
-                      dataType="i4"
-                      name="JobCount" />
                     <externalMetadataColumn
                       refId="Package\DF-Load FactBenefitPopularity\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[FactBenefitPopularityKey]"
                       dataType="i4"
@@ -265,8 +255,7 @@
 	di.DimIndustryKey,
     djf.DimJobFunctionKey,
     dgjf.DimGroupJobFunctionKey,
-    COUNT(jb.BenefitId) AS BenefitCount,
-    COUNT(DISTINCT jb.JobId) AS JobCount
+    COUNT(jb.BenefitId) AS BenefitCount
 FROM jobDWStage.dbo.JobBenefitStage jb
 JOIN jobDWStage.dbo.BenefitTypeStage bt ON jb.BenefitId = bt.BenefitId
 JOIN jobDWStage.dbo.JobStage j ON jb.JobId = j.JobId
@@ -327,15 +316,6 @@ GROUP BY db.DimBenefitKey,
                       name="DimDateKey"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[JobCount]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[JobCount]"
-                      lineageId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[JobCount]"
-                      name="JobCount"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimIndustryKey]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
@@ -387,10 +367,6 @@ GROUP BY db.DimBenefitKey,
                       refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimDateKey]"
                       dataType="i4"
                       name="DimDateKey" />
-                    <externalMetadataColumn
-                      refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[JobCount]"
-                      dataType="i4"
-                      name="JobCount" />
                     <externalMetadataColumn
                       refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimIndustryKey]"
                       dataType="i4"
@@ -448,11 +424,6 @@ GROUP BY db.DimBenefitKey,
                       dataType="i4"
                       lineageId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[BenefitCount]"
                       name="BenefitCount" />
-                    <outputColumn
-                      refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[JobCount]"
-                      dataType="i4"
-                      lineageId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[JobCount]"
-                      name="JobCount" />
                     <outputColumn
                       refId="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
@@ -992,12 +963,6 @@ GROUP BY
                       externalMetadataColumnId="Package\DF-Load FactLanguageDemand\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimIndustryKey]"
                       lineageId="Package\DF-Load FactLanguageDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimIndustryKey]" />
                     <inputColumn
-                      refId="Package\DF-Load FactLanguageDemand\DEST_Insert.Inputs[OLE DB Destination Input].Columns[JobCount]"
-                      cachedDataType="i4"
-                      cachedName="JobCount"
-                      externalMetadataColumnId="Package\DF-Load FactLanguageDemand\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[JobCount]"
-                      lineageId="Package\DF-Load FactLanguageDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[JobCount]" />
-                    <inputColumn
                       refId="Package\DF-Load FactLanguageDemand\DEST_Insert.Inputs[OLE DB Destination Input].Columns[DimGroupJobFunctionKey]"
                       cachedDataType="i4"
                       cachedName="DimGroupJobFunctionKey"
@@ -1032,10 +997,6 @@ GROUP BY
                       refId="Package\DF-Load FactLanguageDemand\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimIndustryKey]"
                       dataType="i4"
                       name="DimIndustryKey" />
-                    <externalMetadataColumn
-                      refId="Package\DF-Load FactLanguageDemand\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[JobCount]"
-                      dataType="i4"
-                      name="JobCount" />
                     <externalMetadataColumn
                       refId="Package\DF-Load FactLanguageDemand\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimJobFunctionKey]"
                       dataType="i4"
@@ -1115,8 +1076,7 @@ GROUP BY
     di.DimIndustryKey,
     djf.DimJobFunctionKey,
     dgjf.DimGroupJobFunctionKey,
-    COUNT(*) AS LanguageCount,
-    COUNT(DISTINCT j.JobId) AS JobCount
+    COUNT(*) AS LanguageCount
 FROM jobDWStage.dbo.JobStage j
 JOIN jobDWStage.dbo.JobIndustryStage ji ON j.JobId = ji.JobId
 JOIN jobDW.dbo.DimLanguage dl ON j.LanguageId = dl.LanguageId
@@ -1171,15 +1131,6 @@ GROUP BY
                       name="DimDateKey"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\DF-Load FactLanguageDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[JobCount]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DF-Load FactLanguageDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[JobCount]"
-                      lineageId="Package\DF-Load FactLanguageDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[JobCount]"
-                      name="JobCount"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\DF-Load FactLanguageDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimIndustryKey]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
@@ -1231,10 +1182,6 @@ GROUP BY
                       refId="Package\DF-Load FactLanguageDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimDateKey]"
                       dataType="i4"
                       name="DimDateKey" />
-                    <externalMetadataColumn
-                      refId="Package\DF-Load FactLanguageDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[JobCount]"
-                      dataType="i4"
-                      name="JobCount" />
                     <externalMetadataColumn
                       refId="Package\DF-Load FactLanguageDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimIndustryKey]"
                       dataType="i4"
@@ -1292,11 +1239,6 @@ GROUP BY
                       dataType="i4"
                       lineageId="Package\DF-Load FactLanguageDemand\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[LanguageCount]"
                       name="LanguageCount" />
-                    <outputColumn
-                      refId="Package\DF-Load FactLanguageDemand\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[JobCount]"
-                      dataType="i4"
-                      lineageId="Package\DF-Load FactLanguageDemand\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[JobCount]"
-                      name="JobCount" />
                     <outputColumn
                       refId="Package\DF-Load FactLanguageDemand\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
@@ -2230,12 +2172,6 @@ GROUP BY djl.DimJobLevelKey, dd.DimDateKey, di.DimIndustryKey, djf.DimJobFunctio
                       externalMetadataColumnId="Package\DF-Load FactSkillDemand\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimIndustryKey]"
                       lineageId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimIndustryKey]" />
                     <inputColumn
-                      refId="Package\DF-Load FactSkillDemand\DEST_Insert.Inputs[OLE DB Destination Input].Columns[JobCount]"
-                      cachedDataType="i4"
-                      cachedName="JobCount"
-                      externalMetadataColumnId="Package\DF-Load FactSkillDemand\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[JobCount]"
-                      lineageId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[JobCount]" />
-                    <inputColumn
                       refId="Package\DF-Load FactSkillDemand\DEST_Insert.Inputs[OLE DB Destination Input].Columns[DimSkillKey]"
                       cachedDataType="i4"
                       cachedName="DimSkillKey"
@@ -2270,10 +2206,6 @@ GROUP BY djl.DimJobLevelKey, dd.DimDateKey, di.DimIndustryKey, djf.DimJobFunctio
                       refId="Package\DF-Load FactSkillDemand\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[DimIndustryKey]"
                       dataType="i4"
                       name="DimIndustryKey" />
-                    <externalMetadataColumn
-                      refId="Package\DF-Load FactSkillDemand\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[JobCount]"
-                      dataType="i4"
-                      name="JobCount" />
                     <externalMetadataColumn
                       refId="Package\DF-Load FactSkillDemand\DEST_Insert.Inputs[OLE DB Destination Input].ExternalColumns[FactSkillDemandKey]"
                       dataType="i4"
@@ -2353,8 +2285,7 @@ GROUP BY djl.DimJobLevelKey, dd.DimDateKey, di.DimIndustryKey, djf.DimJobFunctio
     di.DimIndustryKey,
 	djf.DimJobFunctionKey,
     dgjf.DimGroupJobFunctionKey,
-    COUNT(js.SkillId) AS SkillCount,
-    COUNT(DISTINCT js.JobId) AS JobCount
+    COUNT(js.SkillId) AS SkillCount
 FROM jobDWStage.dbo.JobSkillStage js
 JOIN jobDWStage.dbo.SkillStage s ON js.SkillId = s.SkillId
 JOIN jobDWStage.dbo.JobStage j ON js.JobId = j.JobId
@@ -2411,15 +2342,6 @@ GROUP BY ds.DimSkillKey, dd.DimDateKey, di.DimIndustryKey, djf.DimJobFunctionKey
                       name="DimDateKey"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[JobCount]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[JobCount]"
-                      lineageId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[JobCount]"
-                      name="JobCount"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].Columns[DimIndustryKey]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
@@ -2471,10 +2393,6 @@ GROUP BY ds.DimSkillKey, dd.DimDateKey, di.DimIndustryKey, djf.DimJobFunctionKey
                       refId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimDateKey]"
                       dataType="i4"
                       name="DimDateKey" />
-                    <externalMetadataColumn
-                      refId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[JobCount]"
-                      dataType="i4"
-                      name="JobCount" />
                     <externalMetadataColumn
                       refId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Output].ExternalColumns[DimIndustryKey]"
                       dataType="i4"
@@ -2532,11 +2450,6 @@ GROUP BY ds.DimSkillKey, dd.DimDateKey, di.DimIndustryKey, djf.DimJobFunctionKey
                       dataType="i4"
                       lineageId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[SkillCount]"
                       name="SkillCount" />
-                    <outputColumn
-                      refId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[JobCount]"
-                      dataType="i4"
-                      lineageId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[JobCount]"
-                      name="JobCount" />
                     <outputColumn
                       refId="Package\DF-Load FactSkillDemand\SRC-Stage-DW.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
@@ -2700,7 +2613,7 @@ GROUP BY ds.DimSkillKey, dd.DimDateKey, di.DimIndustryKey, djf.DimJobFunctionKey
         <NodeLayout
           Size="225.6,41.6"
           Id="Package\DF-Load FactLanguageDemand"
-          TopLeft="1379.26530889068,259.020167929242" />
+          TopLeft="1379.97959460649,259.020167929242" />
         <NodeLayout
           Size="248.8,41.6"
           Id="Package\DF-Load FactRecruitmentByLocation"
@@ -2893,26 +2806,26 @@ GROUP BY ds.DimSkillKey, dd.DimDateKey, di.DimIndustryKey, djf.DimJobFunctionKey
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="646.936736161295,84.0084032877081"
+              EndConnector="647.651021877104,84.008403287708"
               Start="0,0"
-              End="646.936736161295,76.5084032877081">
+              End="647.651021877104,76.508403287708">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,16.0458500256505" />
+                    End="0,16.0458500256504" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,16.0458500256505"
-                    Point2="0,20.0458500256505"
-                    Point3="4,20.0458500256505" />
+                    Point1="0,16.0458500256504"
+                    Point2="0,20.0458500256504"
+                    Point3="4,20.0458500256504" />
                   <mssgle:LineSegment
-                    End="642.936736161295,20.0458500256505" />
+                    End="643.651021877104,20.0458500256504" />
                   <mssgle:CubicBezierSegment
-                    Point1="642.936736161295,20.0458500256505"
-                    Point2="646.936736161295,20.0458500256505"
-                    Point3="646.936736161295,24.0458500256505" />
+                    Point1="643.651021877104,20.0458500256504"
+                    Point2="647.651021877104,20.0458500256504"
+                    Point3="647.651021877104,24.0458500256504" />
                   <mssgle:LineSegment
-                    End="646.936736161295,76.5084032877081" />
+                    End="647.651021877104,76.508403287708" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2928,7 +2841,7 @@ GROUP BY ds.DimSkillKey, dd.DimDateKey, di.DimIndustryKey, djf.DimJobFunctionKey
     design-time-name="Package\DF-Load FactBenefitPopularity">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="148.8,41.6"
           Id="Package\DF-Load FactBenefitPopularity\SRC-Stage-DW"
@@ -2956,9 +2869,7 @@ GROUP BY ds.DimSkillKey, dd.DimDateKey, di.DimIndustryKey, djf.DimJobFunctionKey
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -3050,7 +2961,7 @@ GROUP BY ds.DimSkillKey, dd.DimDateKey, di.DimIndustryKey, djf.DimJobFunctionKey
     design-time-name="Package\DF-Load FactLanguageDemand">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="148.8,41.6"
           Id="Package\DF-Load FactLanguageDemand\SRC-Stage-DW"
@@ -3078,9 +2989,7 @@ GROUP BY ds.DimSkillKey, dd.DimDateKey, di.DimIndustryKey, djf.DimJobFunctionKey
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -3231,7 +3140,7 @@ GROUP BY ds.DimSkillKey, dd.DimDateKey, di.DimIndustryKey, djf.DimJobFunctionKey
     design-time-name="Package\DF-Load FactSkillDemand">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="148.8,41.6"
           Id="Package\DF-Load FactSkillDemand\SRC-Stage-DW"
@@ -3259,9 +3168,7 @@ GROUP BY ds.DimSkillKey, dd.DimDateKey, di.DimIndustryKey, djf.DimJobFunctionKey
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
